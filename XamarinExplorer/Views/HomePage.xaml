@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="XamarinExplorer.Views.HomePage"
+                  xmlns:views="clr-namespace:XamarinExplorer.Views">
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Text="About" Order="Secondary">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </MasterDetailPage.ToolbarItems>
+    
+    <MasterDetailPage.Detail>
+        <views:TabsPage Title="Home" />
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
