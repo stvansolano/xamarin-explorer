@@ -61,6 +61,7 @@ namespace XamarinExplorer.Services
 
 		public override async Task<IEnumerable<Item>> GetAsync(bool forceRefresh = false)
 		{
+			await Task.Delay(2000);
 			return await Task.FromResult(items);
 		}
 	}

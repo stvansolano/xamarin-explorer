@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace XamarinExplorer.Views
@@ -11,8 +11,9 @@ namespace XamarinExplorer.Views
 		{
 			InitializeComponent();
 
+			BindingContext = this;
 		}
 
-		public List<MenuItem> Menu { get; } = new List<MenuItem>();
+		public ICollection<MenuItem> Menu { get; } = new ObservableCollection<MenuItem>();
 	}
 }
