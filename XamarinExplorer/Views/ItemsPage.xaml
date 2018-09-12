@@ -4,7 +4,7 @@
              x:Class="XamarinExplorer.Views.ItemsPage" Title="{Binding Title}" 
              xmlns:views="clr-namespace:XamarinExplorer.Views">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh" Order="Secondary">
+        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh" Order="Secondary" Icon="tab_about.png">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
    <ContentPage.Content>
@@ -26,12 +26,23 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <views:CardView>
-                                <StackLayout Padding="10">
-                                    <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{StaticResource ListItemTextStyle}" FontSize="16" />
-                                    <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{StaticResource ListItemDetailTextStyle}" FontSize="13" />
-                                </StackLayout>
-                            </views:CardView>
+                            <OnPlatform x:TypeArguments="View">
+                                <OnPlatform.Android>
+                                    <views:CardView>
+                                        <StackLayout Padding="10">
+                                            <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                            <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                        </StackLayout>
+                                    </views:CardView>
+                                </OnPlatform.Android>
+                                <OnPlatform.iOS>
+                                    <StackLayout Padding="10">
+                                        <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                        <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                    </StackLayout>
+                                </OnPlatform.iOS>
+                            </OnPlatform>
+                           
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
