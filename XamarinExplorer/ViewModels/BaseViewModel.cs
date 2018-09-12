@@ -12,8 +12,6 @@ namespace XamarinExplorer.ViewModels
 {
 	public class BaseViewModel : INotifyPropertyChanged
 	{
-		public IRepository<Item> DataStore => DependencyService.Get<IRepository<Item>>() ?? new MockDataStore();
-
 		bool isBusy = false;
 		public bool IsBusy
 		{

@@ -17,9 +17,15 @@ namespace XamarinExplorer.Views
 
 			On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
-			MenuScreen.Menu.Add(new MenuItem { Text = "Controls", Command = GetNavigationCommand(() => new ControlsPage { Title = "Controls" }) });
-			MenuScreen.Menu.Add(new MenuItem { Text = "Lists", Command = GetNavigationCommand(() => new ItemsPage { Title = "Lists" }) });
-			MenuScreen.Menu.Add(new MenuItem { Text = "About", Command = aboutCommand });
+			MenuScreen.Menu.Add(GetMenuItem("Controls", new ControlsPage()));
+			MenuScreen.Menu.Add(GetMenuItem("Lists", new ItemsPage()));
+		}
+
+		private MenuItem GetMenuItem(string title, Page page)
+		{
+			page.Title = title;
+
+			return new MenuItem { Text = title, Command = GetNavigationCommand(() => page) };
 		}
 
 		private ICommand GetNavigationCommand(Func<Page> pageFunc)

@@ -22,7 +22,7 @@ namespace XamarinExplorer.Services
 		{
 			if (forceRefresh && CrossConnectivity.Current.IsConnected)
 			{
-				var json = await GetClient().GetStringAsync($"api/item");
+				var json = await GetClient().GetStringAsync(string.Empty);
 				_items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<T>>(json));
 			}
 
@@ -33,7 +33,7 @@ namespace XamarinExplorer.Services
 		{
 			if (id != null && CrossConnectivity.Current.IsConnected)
 			{
-				var json = await GetClient().GetStringAsync($"api/item/{id}");
+				var json = await GetClient().GetStringAsync($"{id}");
 				return await Task.Run(() => JsonConvert.DeserializeObject<T>(json));
 			}
 
@@ -47,7 +47,7 @@ namespace XamarinExplorer.Services
 
 			var serializedItem = JsonConvert.SerializeObject(item);
 
-			var response = await GetClient().PostAsync($"api/item", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+			var response = await GetClient().PostAsync("", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
 
 			return response.IsSuccessStatusCode;
 		}
@@ -61,7 +61,7 @@ namespace XamarinExplorer.Services
 			var buffer = Encoding.UTF8.GetBytes(serializedItem);
 			var byteContent = new ByteArrayContent(buffer);
 
-			var response = await GetClient().PutAsync(new Uri($"api/item/{id}"), byteContent);
+			var response = await GetClient().PutAsync(new Uri($"{id}"), byteContent);
 
 			return response.IsSuccessStatusCode;
 		}
@@ -71,7 +71,7 @@ namespace XamarinExplorer.Services
 			if (id != null && !CrossConnectivity.Current.IsConnected)
 				return false;
 
-			var response = await GetClient().DeleteAsync($"api/item/{id}");
+			var response = await GetClient().DeleteAsync($"{id}");
 
 			return response.IsSuccessStatusCode;
 		}

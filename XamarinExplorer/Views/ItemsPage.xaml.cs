@@ -2,21 +2,25 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinExplorer.Models;
+using XamarinExplorer.Services;
 using XamarinExplorer.ViewModels;
 
 namespace XamarinExplorer.Views
 {
 	public partial class ItemsPage : ContentPage
 	{
-		ItemsViewModel viewModel;
+		ListViewModel<Item> _viewModel;
 
 		public ItemsPage()
 		{
 			InitializeComponent();
 
-			RefreshToolbar.Command = new Command(() => viewModel.LoadItemsCommand.Execute(new object()));
+			RefreshToolbar.Command = new Command(() => _viewModel.LoadItemsCommand.Execute(new object()));
 
-			BindingContext = viewModel = new ItemsViewModel();
+			var repository = DependencyService.Get<IRepository<Item>>() ?? new MockDataStore();
+			BindingContext = _viewModel = new ListViewModel<Item>(repository);
+
+			ItemsListView.ItemSelected += OnItemSelected;
 		}
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -35,8 +39,8 @@ namespace XamarinExplorer.Views
 		{
 			base.OnAppearing();
 
-			if (viewModel.Items.Count == 0)
-				viewModel.LoadItemsCommand.Execute(new object());
+			if (_viewModel.Items.Count == 0)
+				_viewModel.LoadItemsCommand.Execute(new object());
 		}
 	}
 }

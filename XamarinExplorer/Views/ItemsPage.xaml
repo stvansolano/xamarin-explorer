@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="XamarinExplorer.Views.ItemsPage" Title="{Binding Title}" 
-             xmlns:views="clr-namespace:XamarinExplorer.Views">
+             x:Class="XamarinExplorer.Views.ItemsPage" Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="RefreshToolbar" Text="Refresh" Order="Secondary" Icon="tab_about.png">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-   <ContentPage.Content>
+   <ContentPage.Content xmlns:views="clr-namespace:XamarinExplorer.Views">
         <StackLayout Orientation="Vertical" VerticalOptions="Fill">
             <SearchBar HeightRequest="40"
                        BackgroundColor="{StaticResource PrimaryDark}"
@@ -21,8 +20,7 @@
                       IsPullToRefreshEnabled="true" 
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
                       CachingStrategy="RecycleElement" 
-                      BackgroundColor="Transparent"
-                      ItemSelected="OnItemSelected">
+                      BackgroundColor="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
