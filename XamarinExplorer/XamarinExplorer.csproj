@@ -12,4 +12,9 @@
   <ItemGroup>
     <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\CardView.xaml.cs">
+      <DependentUpon>CardView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

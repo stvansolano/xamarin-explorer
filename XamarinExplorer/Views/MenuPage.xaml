@@ -6,11 +6,11 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <StackLayout Orientation="Vertical">
-                <ListView ItemsSource="{Binding Menu}" Margin="10,20,10,0">
+                <ListView ItemsSource="{Binding Menu}" HasUnevenRows="true">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" Padding="10">
                                     <!--<Image Source="{Binding Icon}" />-->
                                     <Label Text="{Binding Text}" FontSize="Medium" />
                                     <StackLayout.GestureRecognizers>

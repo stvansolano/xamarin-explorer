@@ -11,33 +11,29 @@ namespace XamarinExplorer.Services
 	public class Repository<T> : IRepository<T>
 		where T : class
 	{
-		HttpClient client;
-		IEnumerable<T> items;
+		IEnumerable<T> _items;
 
 		public Repository()
 		{
-			client = new HttpClient();
-			client.BaseAddress = new Uri($"{App.WebServiceUrl}/");
-
-			items = new List<T>();
+			_items = new List<T>();
 		}
 
 		public virtual async Task<IEnumerable<T>> GetAsync(bool forceRefresh = false)
 		{
 			if (forceRefresh && CrossConnectivity.Current.IsConnected)
 			{
-				var json = await client.GetStringAsync($"api/item");
-				items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<T>>(json));
+				var json = await GetClient().GetStringAsync($"api/item");
+				_items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<T>>(json));
 			}
 
-			return items;
+			return _items;
 		}
 
 		public virtual async Task<T> GetAsync(string id)
 		{
 			if (id != null && CrossConnectivity.Current.IsConnected)
 			{
-				var json = await client.GetStringAsync($"api/item/{id}");
+				var json = await GetClient().GetStringAsync($"api/item/{id}");
 				return await Task.Run(() => JsonConvert.DeserializeObject<T>(json));
 			}
 
@@ -51,7 +47,7 @@ namespace XamarinExplorer.Services
 
 			var serializedItem = JsonConvert.SerializeObject(item);
 
-			var response = await client.PostAsync($"api/item", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+			var response = await GetClient().PostAsync($"api/item", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
 
 			return response.IsSuccessStatusCode;
 		}
@@ -65,7 +61,7 @@ namespace XamarinExplorer.Services
 			var buffer = Encoding.UTF8.GetBytes(serializedItem);
 			var byteContent = new ByteArrayContent(buffer);
 
-			var response = await client.PutAsync(new Uri($"api/item/{id}"), byteContent);
+			var response = await GetClient().PutAsync(new Uri($"api/item/{id}"), byteContent);
 
 			return response.IsSuccessStatusCode;
 		}
@@ -75,9 +71,20 @@ namespace XamarinExplorer.Services
 			if (id != null && !CrossConnectivity.Current.IsConnected)
 				return false;
 
-			var response = await client.DeleteAsync($"api/item/{id}");
+			var response = await GetClient().DeleteAsync($"api/item/{id}");
 
 			return response.IsSuccessStatusCode;
+		}
+
+		protected HttpClient GetClient()
+		{
+			var client = new HttpClient();
+			if (!string.IsNullOrEmpty(App.WebServiceUrl))
+			{
+				client.BaseAddress = new Uri($"{App.WebServiceUrl}/");
+			}
+
+			return client;
 		}
 	}
 }
