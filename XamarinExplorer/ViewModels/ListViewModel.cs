@@ -2,27 +2,27 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
-using XamarinExplorer.Models;
-using XamarinExplorer.Views;
+using XamarinExplorer.Services;
 
 namespace XamarinExplorer.ViewModels
 {
-	public class ItemsViewModel : BaseViewModel
+	public class ListViewModel<T> : BaseViewModel
+		where T : class
 	{
-		public ObservableCollection<Item> Items { get; set; }
+		public ObservableCollection<T> Items { get; set; }
 		public Command LoadItemsCommand { get; set; }
+		public IRepository<T> Repository { get; }
 
-		public ItemsViewModel()
+		public ListViewModel(IRepository<T> repository)
 		{
+			Repository = repository;
 			Title = "Home";
-			Items = new ObservableCollection<Item>();
-			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+			Items = new ObservableCollection<T>();
+			LoadItemsCommand = new Command(async () => await LoadItemsAsync());
 		}
 
-		async Task ExecuteLoadItemsCommand()
+		public async Task LoadItemsAsync()
 		{
 			if (IsBusy)
 				return;
@@ -32,7 +32,7 @@ namespace XamarinExplorer.ViewModels
 			try
 			{
 				Items.Clear();
-				var items = await DataStore.GetAsync(true);
+				var items = await Repository.GetAsync(true);
 				foreach (var item in items)
 				{
 					Items.Add(item);

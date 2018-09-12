@@ -6,17 +6,25 @@ namespace XamarinExplorer.Views
 {
 	public partial class HomePage
 	{
+		private MenuPage MenuScreen { get; } = new MenuPage();
+
 		public HomePage()
 		{
 			InitializeComponent();
 
-			var menuPage = new MenuPage();
-			menuPage.Menu.Add(new MenuItem { Text = "Home", Command = GetNavigationCommand(() => new HomePage { Title = "Home" }) });
-			menuPage.Menu.Add(new MenuItem { Text = "About", Command = GetNavigationCommand(() => new AboutPage { Title = "About" }) });
+			MenuScreen.Menu.Add(GetMenuItem("Home", new HomePage()));
+			MenuScreen.Menu.Add(GetMenuItem("About", new AboutPage()));
 
-			Master = menuPage;
+			Master = MenuScreen;
 
 			RefreshToolbar.Command = new Command(() => { });
+		}
+
+		private MenuItem GetMenuItem(string title, Page page)
+		{
+			page.Title = title;
+
+			return new MenuItem { Text = title, Command = GetNavigationCommand(() => page) };
 		}
 
 		private ICommand GetNavigationCommand(Func<Page> pageFunc)
