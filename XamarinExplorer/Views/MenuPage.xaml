@@ -5,21 +5,23 @@
              Title="Menu">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <StackLayout Orientation="Vertical" Margin="5,40,5,0"
-                         BackgroundColor="#C0C0C0">
-                <Image HeightRequest="60">
-                    <Image.Source>
-                        <OnPlatform x:TypeArguments="FileImageSource">
-                            <On Platform="iOS" Value="xamarin_logo" />
-                            <On Platform="Android" Value="xamarin_logo" />
-                        </OnPlatform>
-                    </Image.Source>
-                </Image>
-            </StackLayout>
             <StackLayout Orientation="Vertical">
-                <Label Text="Menu" />
+                <ListView ItemsSource="{Binding Menu}" Margin="10,20,10,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <!--<Image Source="{Binding Icon}" />-->
+                                    <Label Text="{Binding Text}" FontSize="Medium" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Command}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

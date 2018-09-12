@@ -2,27 +2,31 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
             xmlns:views="clr-namespace:XamarinExplorer.Views" 
-            x:Class="XamarinExplorer.Views.TabsPage">
-    <TabbedPage.Children>
-        <NavigationPage Title="Welcome">
-            <NavigationPage.Icon>
+            x:Class="XamarinExplorer.Views.TabsPage"
+            Title="Xamarin Explorer">
+     <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="About" Order="Secondary" x:Name="AboutToolbarItem">
+            <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png" />
+                    <On Platform="UWP" Value="add.png" />
                 </OnPlatform>
-            </NavigationPage.Icon>
-            <x:Arguments>
-                <views:ItemsPage />
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="About">
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+    <TabbedPage.Children>
+        <views:MenuPage x:Name="MenuScreen" Title="Home">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png" />
                 </OnPlatform>
             </NavigationPage.Icon>
-            <x:Arguments>
-                <views:AboutPage />
-            </x:Arguments>
-        </NavigationPage>
+        </views:MenuPage>
+        <views:ItemsPage x:Name="ItemsScreen" Title="Lists">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+        </views:ItemsPage>
     </TabbedPage.Children>
 </TabbedPage>

@@ -14,6 +14,8 @@ namespace XamarinExplorer.Views
 		{
 			InitializeComponent();
 
+			RefreshToolbar.Command = new Command(() => viewModel.LoadItemsCommand.Execute(new object()));
+
 			BindingContext = viewModel = new ItemsViewModel();
 		}
 
@@ -34,7 +36,7 @@ namespace XamarinExplorer.Views
 			base.OnAppearing();
 
 			if (viewModel.Items.Count == 0)
-				viewModel.LoadItemsCommand.Execute(null);
+				viewModel.LoadItemsCommand.Execute(new object());
 		}
 	}
 }

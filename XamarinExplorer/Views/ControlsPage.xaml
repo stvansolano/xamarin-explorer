@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="XamarinExplorer.Views.ControlsPage"
+             x:Name="Root">
+    <ScrollView Margin="20">
+        <StackLayout Orientation="Vertical"
+                                 Padding="5,0,0,0">
+            <Entry PlaceholderColor="{StaticResource Accent}" 
+                   Text="Text input here" 
+                   IsPassword="{Binding Source={x:Reference Name=SwitchControl}, Path=IsToggled}" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Label Text="Is secret?" />
+                <Switch x:Name="SwitchControl" OnColor="{StaticResource Accent}" />
+            </StackLayout>
+
+            <Label Text="Date:" />
+            <DatePicker />
+
+            <Slider x:Name="SliderControl" Value="10" 
+                    MinimumTrackColor="LightGray"
+                    MaximumTrackColor="DarkGray"
+                    ThumbColor="{StaticResource Accent}" />
+
+            <Label Text="Progress indicator:"></Label>
+            <ProgressBar Progress="{Binding Source={x:Reference Name=SliderControl}, Path=Value}"
+                         ProgressColor="{StaticResource Primary}"
+                         />
+
+            <Button Text="Confirm" BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    BindingContext="{Binding Source={x:Reference Name=Root}}" 
+                    Command="{Binding Path=MessageCommand}" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -4,6 +4,8 @@
                   x:Class="XamarinExplorer.Views.HomePage"
                   xmlns:views="clr-namespace:XamarinExplorer.Views">
     <MasterDetailPage.ToolbarItems>
+        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh" Order="Secondary">
+        </ToolbarItem>
         <ToolbarItem Text="About" Order="Secondary">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -14,6 +16,6 @@
     </MasterDetailPage.ToolbarItems>
     
     <MasterDetailPage.Detail>
-        <views:TabsPage Title="Home" />
+        <views:ItemsPage />
     </MasterDetailPage.Detail>
 </MasterDetailPage>
