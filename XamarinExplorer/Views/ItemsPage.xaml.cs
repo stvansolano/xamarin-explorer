@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using XamarinExplorer.Models;
 using XamarinExplorer.Services;
 using XamarinExplorer.ViewModels;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace XamarinExplorer.Views
 {
@@ -15,12 +16,25 @@ namespace XamarinExplorer.Views
 		{
 			InitializeComponent();
 
-			RefreshToolbar.Command = new Command(() => _viewModel.LoadItemsCommand.Execute(new object()));
-
+			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetLargeTitleDisplay(LargeTitleDisplayMode.Always);
+				
 			var repository = DependencyService.Get<IRepository<Item>>() ?? new MockDataStore();
 			BindingContext = _viewModel = new ListViewModel<Item>(repository);
 
+			_viewModel.FilterPredicate = item => MatchesFilter(item.Text) || MatchesFilter(item.Description);
+			
+			RefreshToolbar.Command = new Command(() => _viewModel.LoadItemsCommand.Execute(new object()));
+
 			ItemsListView.ItemSelected += OnItemSelected;
+		}
+
+		private bool MatchesFilter(string text)
+		{
+			if (string.IsNullOrEmpty(_viewModel.Filter))
+			{
+				return true;
+			}
+			return (text ?? string.Empty).ToLowerInvariant().Contains(_viewModel.Filter.ToLowerInvariant());
 		}
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

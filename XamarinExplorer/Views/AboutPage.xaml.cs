@@ -13,8 +13,10 @@ namespace XamarinExplorer.Views
 
 			Title = "About";
 			OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
+			OpenGitHubCommand = new Command(() => Device.OpenUri(new Uri("https://github.com/stvansolano/xamarin-explorer")));
 		}
 
 		public ICommand OpenWebCommand { get; }
+		public ICommand OpenGitHubCommand { get; }
 	}
 }
