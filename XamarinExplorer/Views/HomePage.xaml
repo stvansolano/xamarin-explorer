@@ -4,14 +4,15 @@
                   x:Class="XamarinExplorer.Views.HomePage"
                   xmlns:views="clr-namespace:XamarinExplorer.Views">
     <MasterDetailPage.ToolbarItems>
-        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh" Order="Secondary">
+        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh">
+             <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder" Android="Secondary" Default="Default" />
+            </ToolbarItem.Order>
         </ToolbarItem>
-        <ToolbarItem Text="About" Order="Secondary">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="add.png" />
-                </OnPlatform>
-            </ToolbarItem.Icon>
+        <ToolbarItem Text="About">
+             <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder" Android="Secondary" Default="Default" />
+            </ToolbarItem.Order>
         </ToolbarItem>
     </MasterDetailPage.ToolbarItems>
     

@@ -8,12 +8,13 @@ namespace XamarinExplorer.Views
 		{
 			InitializeComponent();
 
-			if (Device.RuntimePlatform == Device.Android)
-			{
-				HasShadow = true;
-				BorderColor = Color.DarkGray;
-				Margin = new Thickness(5);
-			}
+			//if (Device.RuntimePlatform == Device.Android)
+			//{
+				HasShadow = Device.RuntimePlatform == Device.Android;
+				BorderColor = Color.LightGray;
+
+				Margin = Device.RuntimePlatform == Device.iOS ? new Thickness(10) : new Thickness(5);
+			//}
 		}
 	}
 }

@@ -9,19 +9,22 @@
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="PrimaryDark">#2196F3</Color>
             <Color x:Key="Accent">#96d1ff</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
+            <Color x:Key="LightTextColor">White</Color>
+            <Color x:Key="LightBackground">White</Color>
 
             <!-- Green Palette -->
             <!--<Color x:Key="Primary">#4CAF50</Color>
             <Color x:Key="PrimaryDark">#388E3C</Color>
             <Color x:Key="Accent">#FF5722</Color>
-            <Color x:Key="LightTextColor">#FFCCBC</Color>-->
+            <Color x:Key="LightTextColor">White</Color>
+            <Color x:Key="LightBackground">White</Color>-->
 
             <!-- Red Palette -->
-            <!--<Color x:Key="Primary">#4CAF50</Color>
+            <!--<Color x:Key="Primary">#F44336</Color>
             <Color x:Key="PrimaryDark">#D32F2F</Color>
-            <Color x:Key="Accent">#9E9E9E</Color>
-            <Color x:Key="LightTextColor">#FFCDD2</Color>-->
+            <Color x:Key="Accent">#448AFF</Color>
+            <Color x:Key="LightTextColor">White</Color>
+            <Color x:Key="LightBackground">White</Color>-->
 
             <!--Global Styles-->
             <Style TargetType="NavigationPage">

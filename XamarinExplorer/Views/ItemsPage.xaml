@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              x:Class="XamarinExplorer.Views.ItemsPage" Title="{Binding Title}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh" Order="Secondary" Icon="tab_about.png">
+        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh">
+             <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder" Android="Secondary" Default="Default" />
+            </ToolbarItem.Order>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
    <ContentPage.Content xmlns:views="clr-namespace:XamarinExplorer.Views">
         <StackLayout Orientation="Vertical" VerticalOptions="Fill">
             <SearchBar HeightRequest="40"
                        BackgroundColor="{StaticResource PrimaryDark}"
-                       TextColor="White"/>
+                       Text="{Binding Filter}" Placeholder="Type to search"
+                       TextColor="{StaticResource LightTextColor}"
+                       />
 
+            <Button Command="{Binding AddMoreCommand}" Margin="20"
+                    Text="Add more" BackgroundColor="{StaticResource PrimaryDark}"
+                    TextColor="White"
+                    />
             <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Items}" 
                       VerticalOptions="FillAndExpand" 
@@ -19,28 +30,22 @@
                       RefreshCommand="{Binding LoadItemsCommand}" 
                       IsPullToRefreshEnabled="true" 
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
-                      CachingStrategy="RecycleElement" 
-                      BackgroundColor="Transparent">
+                      CachingStrategy="RecycleElement"
+                      android:ListView.IsFastScrollEnabled="True"
+                      SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <OnPlatform x:TypeArguments="View">
-                                <OnPlatform.Android>
                                     <views:CardView>
-                                        <StackLayout Padding="10">
-                                            <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                        <StackLayout Padding="10" Orientation="Vertical">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                       FontSize="16" HorizontalOptions="FillAndExpand" />
+                                                <Switch IsToggled="false" HorizontalOptions="End" OnColor="{StaticResource Accent}" />
+                                            </StackLayout>
                                             <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                                         </StackLayout>
                                     </views:CardView>
-                                </OnPlatform.Android>
-                                <OnPlatform.iOS>
-                                    <StackLayout Padding="10">
-                                        <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-                                        <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-                                    </StackLayout>
-                                </OnPlatform.iOS>
-                            </OnPlatform>
-                           
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
