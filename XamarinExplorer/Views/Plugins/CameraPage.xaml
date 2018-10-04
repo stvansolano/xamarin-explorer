@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="XamarinExplorer.Views.CameraPage">
     <ContentPage.Content>
-         <StackLayout Orientation="Vertical">
+         <StackLayout Orientation="Vertical" Margin="5">
             <Button x:Name="captureButton" Text="Take"></Button>
-            <Image x:Name="image" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+
+             <Slider x:Name="slider" Value="10" IsVisible="false"
+                    MinimumTrackColor="LightGray"
+                    MaximumTrackColor="DarkGray" Minimum="0" Maximum="360"
+                    ThumbColor="{StaticResource Accent}" />
+
+            <Image x:Name="image" VerticalOptions="FillAndExpand" Aspect="AspectFill" 
+                   Rotation="{Binding Path=Value, Source={x:Reference Name=slider}}"
+                   Margin="10,30,10,10"
+                   />
             <Label x:Name="mediaFile" Text="" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
