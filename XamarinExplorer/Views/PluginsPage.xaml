@@ -6,7 +6,7 @@
              x:Name="Root">
     <ContentPage.Content>
         <Grid BindingContext="{Binding Source={x:Reference Root} }">
-            <Grid.RowDefinitions>
+            <Grid.RowDefinitions>   
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />

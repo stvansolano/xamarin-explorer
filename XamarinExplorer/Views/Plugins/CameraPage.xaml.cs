@@ -11,6 +11,7 @@ namespace XamarinExplorer.Views
 		{
 			InitializeComponent();
 
+			slider.Value = 360;
 			captureButton.Command = new Command(() => TakePhoto());
 		}
 
@@ -32,8 +33,18 @@ namespace XamarinExplorer.Views
 			{
 				return;
 			}
+			ShowImage(media);
+		}
+
+		private void ShowImage(MediaFile media)
+		{
+			if (media == null)
+			{
+				return;
+			}
 			mediaFile.Text = media.Path;
 			image.Source = ImageSource.FromFile(media.Path);
+			slider.IsVisible = true;
 		}
 
 		private async void PickImageInstead()
@@ -49,13 +60,7 @@ namespace XamarinExplorer.Views
 				CompressionQuality = 100,
 				PhotoSize = PhotoSize.Medium
 			});
-
-			if (media == null)
-			{
-				return;
-			}
-			mediaFile.Text = media.Path;
-			image.Source = ImageSource.FromFile(media.Path);
+			ShowImage(media);
 		}
 	}
 }
