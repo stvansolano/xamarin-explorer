@@ -123,6 +123,8 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\compass.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -133,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms">
       <Version>3.1.0.697729</Version>
     </PackageReference>

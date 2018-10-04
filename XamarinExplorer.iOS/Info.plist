@@ -34,5 +34,9 @@
 	<string>Xamarin Explorer</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Permission to pick photos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Permission to take photos</string>
 </dict>
 </plist>

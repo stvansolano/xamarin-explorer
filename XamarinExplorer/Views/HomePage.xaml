@@ -2,7 +2,7 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   x:Class="XamarinExplorer.Views.HomePage"
-                  xmlns:views="clr-namespace:XamarinExplorer.Views">
+                  xmlns:local="clr-namespace:XamarinExplorer.Views">
     <MasterDetailPage.ToolbarItems>
         <ToolbarItem x:Name="RefreshToolbar" Text="Refresh">
              <ToolbarItem.Order>
@@ -15,8 +15,8 @@
             </ToolbarItem.Order>
         </ToolbarItem>
     </MasterDetailPage.ToolbarItems>
-    
+
     <MasterDetailPage.Detail>
-        <views:ItemsPage />
+        <local:ItemsPage />
     </MasterDetailPage.Detail>
 </MasterDetailPage>
