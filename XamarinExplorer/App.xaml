@@ -26,12 +26,12 @@
             <Color x:Key="LightTextColor">White</Color>
             <Color x:Key="LightBackground">White</Color>-->
 
-            <!--Global Styles-->
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
-                <Setter Property="BarTextColor" Value="White" />
-            </Style>
+            <!-- Images -->
 
+            <OnPlatform x:TypeArguments="FileImageSource" x:Key="CameraIcon">
+                <On Platform="iOS" Value="tab_feed.png" />
+                <On Platform="Android" Value="ic_list.png" />
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

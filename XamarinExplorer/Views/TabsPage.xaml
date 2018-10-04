@@ -22,13 +22,13 @@
                 </OnPlatform>
             </NavigationPage.Icon>
         </views:MenuPage>
-        <views:ItemsPage x:Name="ItemsScreen" Title="Lists">
+        <views:PluginsPage x:Name="ItemsScreen" Title="Plugins">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png" />
                     <On Platform="Android" Value="ic_list.png" />
                 </OnPlatform>
             </NavigationPage.Icon>
-        </views:ItemsPage>
+        </views:PluginsPage>
     </TabbedPage.Children>
 </TabbedPage>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="XamarinExplorer.Views.PluginsPage"
+             xmlns:local="clr-namespace:XamarinExplorer.Views"
+             x:Name="Root">
+    <ContentPage.Content>
+        <Grid BindingContext="{Binding Source={x:Reference Root} }">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <local:CardImageView Grid.Row="0" Grid.Column="0" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="Camera" 
+                                 Title="Camera" HorizontalTextAlignment="Center" Image="{StaticResource CameraIcon}"
+                                 />
+            
+            <local:CardImageView Grid.Row="0" Grid.Column="1" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="Compass" 
+                                 Title="Compass" HorizontalTextAlignment="Center" Image="{StaticResource CameraIcon}"
+                                 />
+
+            <!--
+            <local:CardImageView Grid.Row="1" Grid.Column="0" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="" 
+                                 Title="Plugin 3" HorizontalTextAlignment="Center" Image="{StaticResource CameraIcon}"
+                                 />
+            <local:CardImageView Grid.Row="1" Grid.Column="1" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="" 
+                                 Title="Plugin 4" HorizontalTextAlignment="Center" Image="{StaticResource CameraIcon}"
+                                 />
+            <local:CardImageView Grid.Row="2" Grid.Column="0" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="" 
+                                 Title="Plugin 5" HorizontalTextAlignment="Center" Image="{StaticResource CameraIcon}"
+                                 />
+            <local:CardImageView Grid.Row="2" Grid.Column="1" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="" 
+                                 Title="Plugin 6" HorizontalTextAlignment="Center" Image="{StaticResource CameraIcon}"
+                                 />
+            -->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
