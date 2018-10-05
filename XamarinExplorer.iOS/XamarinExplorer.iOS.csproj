@@ -125,6 +125,9 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\compass.png" />
+    <BundleResource Include="Resources\arrow.png" />
+    <BundleResource Include="Resources\arrow%402x.png" />
+    <BundleResource Include="Resources\arrow%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
