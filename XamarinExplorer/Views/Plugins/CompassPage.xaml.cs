@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Xamarin.Essentials;
+//using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace XamarinExplorer.Views
@@ -30,27 +30,26 @@ namespace XamarinExplorer.Views
 			set => SetProperty(ref heading, value);
 		}
 
-		void Gyroscope_ReadingChanged(object sender, GyroscopeChangedEventArgs e)
-		{
-		}
-
-
 		public Command StopCommand { get; }
+		public Command StartCommand { get; }
+
+		/*void Gyroscope_ReadingChanged(object sender, GyroscopeChangedEventArgs e)
+		{
+		}*/
 
 		void Stop()
 		{
-			if (!Compass.IsMonitoring)
+			/*if (!Compass.IsMonitoring)
 				return;
 
 			Compass.ReadingChanged -= Compass_ReadingChanged;
-			Compass.Stop();
+			Compass.Stop();*/
 		}
 
-		public Command StartCommand { get; }
 
 		void Start()
 		{
-			try
+			/*try
 			{
 				if (Compass.IsMonitoring)
 					return;
@@ -63,8 +62,14 @@ namespace XamarinExplorer.Views
 			{
 				Console.WriteLine(ex);
 				DisplayAlert("Compass not available", "Compass", "Close");
-			}
+			}*/
 		}
+
+		//void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
+		//{
+		//	Heading = e.Reading.HeadingMagneticNorth;
+		//	HeadingDisplay = $"Heading: {Heading.ToString()}";
+		//}
 
 		protected override void OnAppearing()
 		{
@@ -80,12 +85,6 @@ namespace XamarinExplorer.Views
 
 			if (!DesignMode.IsDesignModeEnabled)
 				Stop();
-		}
-
-		void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
-		{
-			Heading = e.Reading.HeadingMagneticNorth;
-			HeadingDisplay = $"Heading: {Heading.ToString()}";
 		}
 
 		private void SetProperty<T>(ref T refValue, T value, 
