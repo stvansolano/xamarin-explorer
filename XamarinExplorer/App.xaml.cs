@@ -3,6 +3,9 @@ using Xamarin.Forms;
 using XamarinExplorer.Services;
 using XamarinExplorer.Views;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamarinExplorer
@@ -14,6 +17,9 @@ namespace XamarinExplorer
 
 		public App()
 		{
+			AppCenter.Start(AppConstants.AppCenterSecret,
+				   typeof(Analytics), typeof(Crashes));
+			
 			InitializeComponent();
 
 			if (UseMockDataStore)
