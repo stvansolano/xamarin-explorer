@@ -33,10 +33,6 @@ namespace XamarinExplorer.Views
 		public Command StopCommand { get; }
 		public Command StartCommand { get; }
 
-		/*void Gyroscope_ReadingChanged(object sender, GyroscopeChangedEventArgs e)
-		{
-		}*/
-
 		void Stop()
 		{
 			/*if (!Compass.IsMonitoring)
@@ -65,11 +61,16 @@ namespace XamarinExplorer.Views
 			}*/
 		}
 
-		//void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
-		//{
-		//	Heading = e.Reading.HeadingMagneticNorth;
-		//	HeadingDisplay = $"Heading: {Heading.ToString()}";
-		//}
+		/*void Gyroscope_ReadingChanged(object sender, GyroscopeChangedEventArgs e)
+		{
+		}
+
+		void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
+		{
+			Heading = e.Reading.HeadingMagneticNorth;
+			HeadingDisplay = $"Heading: {Heading.ToString()}";
+
+		}*/
 
 		protected override void OnAppearing()
 		{

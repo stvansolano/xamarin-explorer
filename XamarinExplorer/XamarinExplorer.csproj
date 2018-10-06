@@ -12,6 +12,7 @@
     <PackageReference Include="Mobile.BuildTools" Version="1.4.0.638" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.9.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.9.0" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
