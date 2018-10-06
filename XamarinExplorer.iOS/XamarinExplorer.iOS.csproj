@@ -129,6 +129,7 @@
     <BundleResource Include="Resources\arrow.png" />
     <BundleResource Include="Resources\arrow%402x.png" />
     <BundleResource Include="Resources\arrow%403x.png" />
+    <BundleResource Include="Resources\camera.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

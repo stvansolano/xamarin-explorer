@@ -11,20 +11,46 @@
             <Color x:Key="Accent">#96d1ff</Color>
             <Color x:Key="LightTextColor">White</Color>
             <Color x:Key="LightBackground">White</Color>
+            <Color x:Key="DarkTextColor">#757575</Color>
+            <Color x:Key="DarkSeparatorColor">#757575</Color>
+            <Color x:Key="ActionColor">#FFA000</Color>
 
-            <!-- Green Palette -->
-            <!--<Color x:Key="Primary">#4CAF50</Color>
-            <Color x:Key="PrimaryDark">#388E3C</Color>
-            <Color x:Key="Accent">#FF5722</Color>
+            <!-- Dark blue Palette -->
+            <!--<Color x:Key="Primary">#03A9F4</Color>
+            <Color x:Key="PrimaryDark">#1976D2</Color>
+            <Color x:Key="Accent">#536DFE</Color>
             <Color x:Key="LightTextColor">White</Color>
-            <Color x:Key="LightBackground">White</Color>-->
+            <Color x:Key="LightBackground">#757575</Color>
+            <Color x:Key="DarkTextColor">#757575</Color>
+            <Color x:Key="DarkSeparatorColor">#757575</Color>
+            <Color x:Key="ActionColor">#FFA000</Color>-->
+        
+            <!-- Green Palette -->
+            <!--<Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="PrimaryDark">#00796B</Color>
+            <Color x:Key="Accent">#448AFF</Color>
+            <Color x:Key="LightTextColor">White</Color>
+            <Color x:Key="LightBackground">White</Color>
+            <Color x:Key="DarkTextColor">#212121</Color>
+            <Color x:Key="DarkSeparatorColor">#757575</Color>
+            <Color x:Key="ActionColor">#00796B</Color>-->
 
+            -->
             <!-- Red Palette -->
             <!--<Color x:Key="Primary">#F44336</Color>
             <Color x:Key="PrimaryDark">#D32F2F</Color>
             <Color x:Key="Accent">#448AFF</Color>
             <Color x:Key="LightTextColor">White</Color>
-            <Color x:Key="LightBackground">White</Color>-->
+            <Color x:Key="LightBackground">White</Color>
+            <Color x:Key="DarkTextColor">#757575</Color>
+            <Color x:Key="DarkSeparatorColor">#757575</Color>
+            <Color x:Key="ActionColor">#FFA000</Color>-->
+
+            <!-- Global -->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
 
             <!-- Images -->
 

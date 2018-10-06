@@ -111,6 +111,7 @@
     <AndroidResource Include="Resources\drawable\arrow.png" />
     <AndroidResource Include="Resources\drawable\compass.png" />
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+    <AndroidResource Include="Resources\drawable\camera.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
