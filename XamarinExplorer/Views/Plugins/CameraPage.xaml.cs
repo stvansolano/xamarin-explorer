@@ -29,7 +29,7 @@ namespace XamarinExplorer.Views
 				storageStatus = results[Permission.Storage];
 			}
 
-			if (cameraStatus != PermissionStatus.Granted || storageStatus == PermissionStatus.Granted)
+			if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
 			{
 				await DisplayAlert("Permissions Denied", "Unable to take photos.", "OK");
 				//On iOS you may want to send your user to the settings screen.

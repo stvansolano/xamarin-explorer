@@ -25,10 +25,10 @@
 
             <Label Text="Progress indicator:"></Label>
             <ProgressBar Progress="{Binding Source={x:Reference Name=SliderControl}, Path=Value}"
-                         ProgressColor="{StaticResource Primary}"
+                         ProgressColor="{StaticResource ActionColor}"
                          />
 
-            <Button Text="Confirm" BackgroundColor="{StaticResource Primary}"
+            <Button Text="Confirm" BackgroundColor="{StaticResource ActionColor}"
                     TextColor="{StaticResource LightTextColor}"
                     BindingContext="{Binding Source={x:Reference Name=Root}}" 
                     Command="{Binding Path=MessageCommand}" />

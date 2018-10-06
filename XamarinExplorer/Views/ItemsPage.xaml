@@ -20,7 +20,7 @@
                        />
 
             <Button Command="{Binding AddMoreCommand}" Margin="20"
-                    Text="Add more" BackgroundColor="{StaticResource PrimaryDark}"
+                    Text="Add more" BackgroundColor="{StaticResource ActionColor}"
                     TextColor="White"
                     />
             <ListView x:Name="ItemsListView" 
