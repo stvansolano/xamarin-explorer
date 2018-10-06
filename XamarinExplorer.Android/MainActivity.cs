@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Microsoft.AppCenter.Crashes;
+using System.Threading.Tasks;
 
 namespace XamarinExplorer.Droid
 {
@@ -14,6 +16,10 @@ namespace XamarinExplorer.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+			AppDomain currentDomain = AppDomain.CurrentDomain;
+			currentDomain.UnhandledException += HandleExceptions;
+			TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;  
+
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
@@ -22,6 +28,21 @@ namespace XamarinExplorer.Droid
 			Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 			LoadApplication(new App());
+		}
+
+		private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+		{
+			Crashes.TrackError(e.Exception);
+		}
+
+		private void HandleExceptions(object sender, UnhandledExceptionEventArgs e)
+		{
+			var innerException = e.ExceptionObject as Exception;
+			if (innerException == null)
+			{
+				return;
+			}
+			Crashes.TrackError(innerException);
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
