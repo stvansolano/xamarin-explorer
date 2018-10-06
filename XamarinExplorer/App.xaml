@@ -54,10 +54,17 @@
 
             <!-- Images -->
 
-            <OnPlatform x:TypeArguments="FileImageSource" x:Key="CameraIcon">
+            <OnPlatform x:TypeArguments="FileImageSource" x:Key="CompassIcon">
                 <On Platform="iOS" Value="tab_feed.png" />
-                <On Platform="Android" Value="ic_list.png" />
+                <On Platform="Android" Value="compass.png" />
             </OnPlatform>
+
+            <OnPlatform x:TypeArguments="FileImageSource" x:Key="CameraIcon">
+                <On Platform="iOS" Value="camera.png" />
+                <On Platform="Android" Value="camera.png" />
+            </OnPlatform>
+
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

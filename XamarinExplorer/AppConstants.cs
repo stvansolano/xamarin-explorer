@@ -11,6 +11,8 @@ namespace XamarinExplorer
 			{
 				string startup = string.Empty;
 
+				#if APP_CENTER
+
 				if (Guid.TryParse(Secrets.AppCenter_iOS_Secret, out Guid iOSSecret))
 				{
 					startup += $"ios={iOSSecret};";
@@ -20,6 +22,7 @@ namespace XamarinExplorer
 				{
 					startup += $"android={AndroidSecret};";
 				}
+				#endif
 
 				return startup;
 			}

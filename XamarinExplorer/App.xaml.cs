@@ -17,10 +17,11 @@ namespace XamarinExplorer
 
 		public App()
 		{
-			AppCenter.Start(AppConstants.AppCenterSecret,
+#if APP_CENTER
+            AppCenter.Start(AppConstants.AppCenterSecret,
 				   typeof(Analytics), typeof(Crashes));
-			
-			InitializeComponent();
+#endif
+            InitializeComponent();
 
 			if (UseMockDataStore)
 				DependencyService.Register<IRepository<Models.Item>, MockDataStore>();
