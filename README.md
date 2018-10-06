@@ -10,8 +10,13 @@ stvansolano@outlook.com
 
 ## Builds
 
+Azure DevOps
+ [![Build status](https://stvansolano.visualstudio.com/cloud-services/_apis/build/status/Xamarin%20Explorer%20-%20Android%20Build%20CI)](https://stvansolano.visualstudio.com/cloud-services/_build/latest?definitionId=6)
+
+App Center
  [![Build status](https://build.appcenter.ms/v0.1/apps/ac8a959f-5538-4a4c-b6ff-e2974c86944d/branches/develop/badge)](https://appcenter.ms)
 
-## Public beta
+## Downlodad (Public beta)
 
- https://install.appcenter.ms/users/stvansolano/apps/xamarin-explorer-android/distribution_groups/public%20beta 
+App Center
+ https://install.appcenter.ms/users/stvansolano/apps/xamarin-explorer-android/distribution_groups/public%20beta
