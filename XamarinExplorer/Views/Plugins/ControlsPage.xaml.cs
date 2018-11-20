@@ -14,7 +14,10 @@ namespace XamarinExplorer.Views
 
 		private async void OnShowMessage()
 		{
-			await DisplayAlert("App says:", "Hello world!", "Close");
+			if (DateTime.Now.Minute % 2 == 0)
+				throw new Exception("Oops...");
+		
+			await DisplayAlert("App says:", "Hello world!", "Close")
 		}
 
 		public ICommand MessageCommand { get; set; }
