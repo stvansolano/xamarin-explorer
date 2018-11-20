@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:XamarinExplorer.Views"
              x:Name="Root">
     <ContentPage.Content>
-        <Grid BindingContext="{Binding Source={x:Reference Root} }">
+        <Grid BindingContext="{Binding Source={x:Reference Root}}">
             <Grid.RowDefinitions>   
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -25,6 +25,10 @@
                                  Title="Compass" HorizontalTextAlignment="Center" Image="{StaticResource CompassIcon}"
                                  />
 
+            <local:CardImageView Grid.Row="1" Grid.Column="0" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="Cognitive" 
+                                 Title="Cognitive Services" HorizontalTextAlignment="Center" Image="{StaticResource CognitiveIcon}"
+                                 />
             <!--
             <local:CardImageView Grid.Row="1" Grid.Column="0" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
                                  Command="{Binding OpenPluginPage}" CommandParameter="" 

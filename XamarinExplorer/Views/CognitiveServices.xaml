@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            x:Class="XamarinExplorer.Views.CognitiveServices"
+            x:Name="Root">
+    <ContentPage Title="Vision API">
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <Style TargetType="BoxView" x:Key="ColorBoxView">
+                    <Setter Property="WidthRequest" Value="10" />
+                    <Setter Property="HeightRequest" Value="10" />
+                    <Setter Property="Margin" Value="5,0,5,0" />
+                </Style>            
+            </ResourceDictionary>
+        </ContentPage.Resources>
+        <ContentPage.Content>
+            <ScrollView>
+                
+
+            <StackLayout Orientation="Vertical" Margin="5"
+                         BindingContext="{Binding Source={x:Reference Root}}">
+                    <Entry x:Name="EntryUrl"  
+                           Text="https://thestayathomechef.com/wp-content/uploads/2018/03/Perfect-Pancakes-4-e1520987577263.jpg"
+                           />
+                <Button x:Name="captureButton" Text="Analyze"></Button>
+
+                <StackLayout x:Name="TagsPanel" Orientation="Vertical"
+                             VerticalOptions="End" IsVisible="false">
+                    <Label x:Name="mediaFile" Text="{Binding Description}" />
+
+                    <Label Text="Tags: "/>
+                    <ListView ItemsSource="{Binding Tags}">
+                      <ListView.ItemTemplate>
+                        <DataTemplate>
+                          <ViewCell>
+                            <Label Text="{Binding Name}"/>
+                          </ViewCell>
+                        </DataTemplate>
+                      </ListView.ItemTemplate>
+                    </ListView>
+                 </StackLayout>   
+                 <!--<Slider x:Name="slider" Value="10" IsVisible="false"
+                        MinimumTrackColor="LightGray"
+                        MaximumTrackColor="DarkGray" Minimum="0" Maximum="360"
+                        ThumbColor="{StaticResource Accent}" />
+
+                    -->
+
+                <Image x:Name="image" VerticalOptions="FillAndExpand" Aspect="AspectFill" 
+                       Source="https://thestayathomechef.com/wp-content/uploads/2018/03/Perfect-Pancakes-4-e1520987577263.jpg"
+                       Margin="10,30,10,10"
+                       />
+                <StackLayout Orientation="Horizontal">
+                        <BoxView Style="{StaticResource ColorBoxView}" 
+                                 Color="{Binding PrimaryColor}" />
+                        <BoxView Style="{StaticResource ColorBoxView}" 
+                                 Color="{Binding AccentColor}" />
+                        <BoxView Style="{StaticResource ColorBoxView}" 
+                                 Color="{Binding SecondaryColor}" />
+                    </StackLayout>
+                        
+             
+            </StackLayout>
+        </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

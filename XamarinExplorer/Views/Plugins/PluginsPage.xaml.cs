@@ -26,6 +26,10 @@ namespace XamarinExplorer.Views
 			{
 				Navigation.PushAsync(new CameraPage() { Title = "Camera" });
 			}
+			else if ("Cognitive".Equals(parameter.ToString()))
+			{
+				Navigation.PushModalAsync(new CognitiveServices() { Title = "Cognitive Services" });
+			}
 		}
 	}
 }

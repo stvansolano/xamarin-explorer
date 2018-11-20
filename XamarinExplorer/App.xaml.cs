@@ -28,6 +28,7 @@ namespace XamarinExplorer
 			else
 				DependencyService.Register<IRepository<Models.Item>, Repository<Models.Item>>();
 
+			//MainPage = new CognitiveServices();
 			MainPage = new NavigationPage(new TabsPage());
 		}
 

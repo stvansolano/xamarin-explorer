@@ -11,10 +11,10 @@ namespace XamarinExplorer.Views
 			MessageCommand = new Command(async() => await DisplayAlert("App says:", "Hello world!", "Close"));
 			InitializeComponent();
 
-            if (DateTime.Now.Minute % 2 == 0)
+            /*if (DateTime.Now.Minute % 2 == 0)
             {
                 throw new Exception("Oops...");
-            }
+            }*/
 		}
 
 		public ICommand MessageCommand { get; set; }

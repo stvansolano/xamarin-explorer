@@ -130,6 +130,7 @@
     <BundleResource Include="Resources\arrow%402x.png" />
     <BundleResource Include="Resources\arrow%403x.png" />
     <BundleResource Include="Resources\camera.png" />
+    <BundleResource Include="Resources\compass_full.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

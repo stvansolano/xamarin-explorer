@@ -10,11 +10,11 @@
             <Image Grid.Row="0" Grid.Column="0"
                    Source="{Binding Image}" Aspect="Fill"
                    VerticalOptions="FillAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding CommandParameter}" />
-                </Image.GestureRecognizers>
             </Image>
             <Label Text="{Binding Title}" VerticalOptions="End" HorizontalTextAlignment="{Binding HorizontalTextAlignment}" />
+             <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding CommandParameter}" />
+            </StackLayout.GestureRecognizers>
         </StackLayout>
     </ContentView.Content>
 </local:CardView>

@@ -55,8 +55,8 @@
             <!-- Images -->
 
             <OnPlatform x:TypeArguments="FileImageSource" x:Key="CompassIcon">
-                <On Platform="iOS" Value="tab_feed.png" />
-                <On Platform="Android" Value="compass.png" />
+                <On Platform="iOS" Value="compass_full.png" />
+                <On Platform="Android" Value="compass_full.png" />
             </OnPlatform>
 
             <OnPlatform x:TypeArguments="FileImageSource" x:Key="CameraIcon">
@@ -64,7 +64,10 @@
                 <On Platform="Android" Value="camera.png" />
             </OnPlatform>
 
-            
+            <OnPlatform x:TypeArguments="FileImageSource" x:Key="CognitiveIcon">
+                 <On Platform="iOS" Value="ic_list.png" />
+                <On Platform="Android" Value="ic_list.png" />
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

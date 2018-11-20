@@ -27,5 +27,22 @@ namespace XamarinExplorer
 				return startup;
 			}
 		}
+
+
+		public static string CognitiveApiKey
+		{
+			get
+			{
+				return Secrets.CognitiveApiKey;
+			}
+		}
+
+		public static string CognitiveUrlEndpoint 
+		{
+			get 
+			{
+				return Secrets.CognitiveUrlEndpoint;
+			}
+		}
 	}
 }
