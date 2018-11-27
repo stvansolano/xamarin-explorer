@@ -6,12 +6,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinExplorer.Android", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinExplorer.iOS", "XamarinExplorer.iOS\XamarinExplorer.iOS.csproj", "{27F60F3C-71BA-4772-BD27-41065B9149D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinExplorer", "XamarinExplorer\XamarinExplorer.csproj", "{85F009FA-03D5-417F-81DF-1843E71D1A43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinExplorer", "XamarinExplorer\XamarinExplorer.csproj", "{85F009FA-03D5-417F-81DF-1843E71D1A43}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{85B151D9-A7F4-49E6-96CF-64C13AA69B81}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{EDEF4438-4DFE-4294-BF6A-28470DDBCA28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iOS", "iOS", "{C7821971-71FA-4D04-B1C5-FEF1658DF12B}"
+	ProjectSection(SolutionItems) = preProject
+		screenshots\iOS\iOS-1.png = screenshots\iOS\iOS-1.png
+		screenshots\iOS\iOS-2.png = screenshots\iOS\iOS-2.png
+		screenshots\iOS\iOS-3.png = screenshots\iOS\iOS-3.png
+		screenshots\iOS\iOS-4.png = screenshots\iOS\iOS-4.png
+		screenshots\iOS\iOS-5.png = screenshots\iOS\iOS-5.png
+		screenshots\iOS\iOS-6.png = screenshots\iOS\iOS-6.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Android", "Android", "{85875682-57C0-4307-8BF8-BF4272E51F61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,5 +80,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {45DD2AA3-3DBF-459B-B851-8B9A008EE006}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C7821971-71FA-4D04-B1C5-FEF1658DF12B} = {EDEF4438-4DFE-4294-BF6A-28470DDBCA28}
+		{85875682-57C0-4307-8BF8-BF4272E51F61} = {EDEF4438-4DFE-4294-BF6A-28470DDBCA28}
 	EndGlobalSection
 EndGlobal
