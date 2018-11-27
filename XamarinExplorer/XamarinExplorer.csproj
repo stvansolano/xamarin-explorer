@@ -28,7 +28,6 @@
     <Compile Remove="Models\Product.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Plugins\" />
     <Folder Include="Views\Controls\" />
   </ItemGroup>
   <ItemGroup>
