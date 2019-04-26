@@ -21,6 +21,7 @@ namespace XamarinExplorer.ViewModels
 		{
 			Repository = repository;
 			Title = "Home";
+            
 			_items = new ObservableCollection<T>();
 			LoadItemsCommand = new Command(async () => await LoadItemsAsync());
 			AddMoreCommand = new Command(async () => await AddMoreAsync());

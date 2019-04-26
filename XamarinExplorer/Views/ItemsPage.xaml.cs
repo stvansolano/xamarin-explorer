@@ -18,7 +18,7 @@ namespace XamarinExplorer.Views
 
 			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetLargeTitleDisplay(LargeTitleDisplayMode.Always);
 				
-			var repository = DependencyService.Get<IRepository<Item>>() ?? new MockDataStore();
+			var repository = DependencyService.Get<IRepository<Item>>();
 			BindingContext = _viewModel = new ListViewModel<Item>(repository);
 
 			_viewModel.FilterPredicate = item => MatchesFilter(item.Text) || MatchesFilter(item.Description);

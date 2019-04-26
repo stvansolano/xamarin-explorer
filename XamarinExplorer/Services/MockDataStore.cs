@@ -11,7 +11,8 @@ namespace XamarinExplorer.Services
 	{
 		List<Item> items;
 
-		public MockDataStore()
+		public MockDataStore(IHttpFactory factory)
+            : base(factory)
 		{
 			items = new List<Item>();
 			var mockItems = new List<Item>

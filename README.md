@@ -20,3 +20,12 @@ App Center
 
 App Center
  https://install.appcenter.ms/users/stvansolano/apps/xamarin-explorer-android/distribution_groups/public%20beta
+
+ ## Required Secrets.json (Forms project)
+
+ ```
+ {
+	"AppCenter_iOS_Secret" : "",
+	"AppCenter_Android_Secret" : ""
+}
+ ```

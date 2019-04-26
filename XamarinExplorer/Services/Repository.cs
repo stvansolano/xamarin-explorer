@@ -14,9 +14,12 @@ namespace XamarinExplorer.Services
 	{
 		IEnumerable<T> _items;
 
-		public Repository()
+        public IHttpFactory Factory { get; }
+
+        public Repository(IHttpFactory factory)
 		{
 			_items = new List<T>();
+            Factory = factory;
 		}
 
 		public virtual async Task<IEnumerable<T>> GetAsync(bool forceRefresh = false)
@@ -79,13 +82,7 @@ namespace XamarinExplorer.Services
 
 		protected HttpClient GetClient()
 		{
-			var client = new HttpClient();
-			if (!string.IsNullOrEmpty(App.WebServiceUrl))
-			{
-				client.BaseAddress = new Uri($"{App.WebServiceUrl}/");
-			}
-
-			return client;
+            return Factory.GetClient();
 		}
 	}
 }
