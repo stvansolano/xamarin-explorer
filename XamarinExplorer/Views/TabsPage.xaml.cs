@@ -19,11 +19,11 @@ namespace XamarinExplorer.Views
 			//On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 			//On<Xamarin.Forms.PlatformConfiguration.iOS>().set(true);
 
-			MenuScreen.Menu.Add(GetMenuItem("Controls", new ControlsPage()));
-			MenuScreen.Menu.Add(GetMenuItem("Lists", new ItemsPage()));
-		}
+            MenuScreen.Menu.Add(GetMenuItem("Controls", new ControlsPage()));
+            MenuScreen.Menu.Add(GetMenuItem("Lists", new ItemsPage()));
+        }
 
-		private MenuItem GetMenuItem(string title, Xamarin.Forms.Page page)
+        private MenuItem GetMenuItem(string title, Xamarin.Forms.Page page)
 		{
 			page.Title = title;
 

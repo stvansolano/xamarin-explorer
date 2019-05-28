@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Xamarin.Forms;
 //using Xamarin.Essentials;
 
 namespace XamarinExplorer.Services
@@ -14,7 +15,9 @@ namespace XamarinExplorer.Services
 	{
 		IEnumerable<T> _items;
 
-		public Repository()
+		public IHttpFactory Factory { get => DependencyService.Get<IHttpFactory>(); }
+
+        public Repository()
 		{
 			_items = new List<T>();
 		}
@@ -79,13 +82,7 @@ namespace XamarinExplorer.Services
 
 		protected HttpClient GetClient()
 		{
-			var client = new HttpClient();
-			if (!string.IsNullOrEmpty(App.WebServiceUrl))
-			{
-				client.BaseAddress = new Uri($"{App.WebServiceUrl}/");
-			}
-
-			return client;
+            return Factory.GetClient();
 		}
 	}
 }
