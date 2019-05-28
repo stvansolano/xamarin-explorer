@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Xamarin.Forms;
 //using Xamarin.Essentials;
 
 namespace XamarinExplorer.Services
@@ -14,12 +15,11 @@ namespace XamarinExplorer.Services
 	{
 		IEnumerable<T> _items;
 
-        public IHttpFactory Factory { get; }
+		public IHttpFactory Factory { get => DependencyService.Get<IHttpFactory>(); }
 
-        public Repository(IHttpFactory factory)
+        public Repository()
 		{
 			_items = new List<T>();
-            Factory = factory;
 		}
 
 		public virtual async Task<IEnumerable<T>> GetAsync(bool forceRefresh = false)
