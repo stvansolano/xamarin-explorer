@@ -17,4 +17,7 @@
     <ProjectReference Include="..\XamarinExplorer\XamarinExplorer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mocks\" />
+  </ItemGroup>
 </Project>
