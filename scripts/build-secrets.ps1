@@ -20,4 +20,4 @@ $secrets = @{
     AppCenter_Android_Secret = "$env:AppCenterSecret"
 }
 
-$secrets | ConvertTo-Json | Out-File .\src\XamarinExplorer\secrets.json
+$secrets | ConvertTo-Json | Out-File .\XamarinExplorer\secrets.json
