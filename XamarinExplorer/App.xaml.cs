@@ -1,11 +1,11 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using XamarinExplorer.Services;
 using XamarinExplorer.Views;
 using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Shared;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamarinExplorer
@@ -23,12 +23,12 @@ namespace XamarinExplorer
 #endif
             InitializeComponent();
 
-			DependencyService.Register<IRepository<Models.Item>, MockDataStore>();
+			DependencyService.Register<IRepository<Item>, MockDataStore>();
 
 			if (UseMockDataStore)
-				DependencyService.Register<IRepository<Models.Item>, MockDataStore>();
+				DependencyService.Register<IRepository<Item>, MockDataStore>();
 			else
-				DependencyService.Register<IRepository<Models.Item>, Repository<Models.Item>>();
+				DependencyService.Register<IRepository<Item>, Repository<Item>>();
 
 			MainPage = new NavigationPage(new TabsPage());
 		}

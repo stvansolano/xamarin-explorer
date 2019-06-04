@@ -1,17 +1,14 @@
-using Moq;
-using Moq.Protected;
-using System;
 using Xamarin.Forms;
-using XamarinExplorer.Models;
 using XamarinExplorer.Services;
 using XamarinExplorer.ViewModels;
 using Xunit;
+using Shared;
 
 namespace UnitTests
 {
-    public class ViewModelTests
+	public class ViewModelTests
     {
-		public static void Init()
+		private static void Init()
 		{
 			Device.Info = new MockDeviceInfo();
 			Device.PlatformServices = new MockPlatformServices();
@@ -32,8 +29,6 @@ namespace UnitTests
 
             Assert.NotNull(viewModel.Items);
             Assert.NotEmpty(viewModel.Items);
-
-
         }
     }
 }

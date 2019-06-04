@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
-using XamarinExplorer.Models;
-using XamarinExplorer.Services;
-
 namespace XamarinExplorer.ViewModels
 {
 	public class BaseViewModel : INotifyPropertyChanged

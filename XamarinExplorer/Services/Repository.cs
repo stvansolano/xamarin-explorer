@@ -32,7 +32,6 @@ namespace XamarinExplorer.Services
 
 			return _items;
 		}
-
 		public virtual async Task<T> GetAsync(string id)
 		{
 			if (id != null && CrossConnectivity.Current.IsConnected)
