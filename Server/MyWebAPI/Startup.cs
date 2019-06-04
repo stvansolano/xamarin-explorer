@@ -38,9 +38,9 @@ namespace MyWebAPI
 			else
 			{
 				app.UseHsts();
+				app.UseHttpsRedirection();
 			}
 
-			app.UseHttpsRedirection();
 			app.UseMvc();
 		}
 	}

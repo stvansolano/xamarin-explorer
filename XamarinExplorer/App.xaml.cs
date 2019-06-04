@@ -23,6 +23,7 @@ namespace XamarinExplorer
 #endif
             InitializeComponent();
 
+			DependencyService.Register<IHttpFactory, HttpFactory>();
 			DependencyService.Register<IRepository<Item>, MockDataStore>();
 
 			if (UseMockDataStore)

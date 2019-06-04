@@ -81,7 +81,7 @@ namespace XamarinExplorer.Services
 
 		protected HttpClient GetClient()
 		{
-            return Factory.GetClient();
+            return Factory?.GetClient();
 		}
 	}
 }
