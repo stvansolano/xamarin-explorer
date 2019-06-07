@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Shared;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using XamarinExplorer.Models;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using XamarinExplorer.Services;
 using XamarinExplorer.ViewModels;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace XamarinExplorer.Views
 {

@@ -1,4 +1,4 @@
-﻿using XamarinExplorer.Models;
+﻿using Shared;
 
 namespace XamarinExplorer.Views
 {
