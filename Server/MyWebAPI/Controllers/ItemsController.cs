@@ -15,7 +15,11 @@ namespace MyWebAPI.Controllers
 		[HttpGet]
 		public ActionResult<IEnumerable<Item>> Get()
 		{
-			return new [] { new Item { Text = "value1" }, new Item { Text = "value2" }};
+			return new [] { 
+				new Item { Text = "values 1" }, 
+				new Item { Text = "values 2" },
+				new Item { Text = "values 3" }
+				};
 		}
 
 		// GET api/{Controller}/5

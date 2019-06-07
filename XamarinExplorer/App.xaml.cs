@@ -12,8 +12,10 @@ namespace XamarinExplorer
 {
 	public partial class App : Application
 	{
-		public static string WebServiceUrl = "";
-		public static bool UseMockDataStore = true;
+		// HTTPS
+		public const string WebServiceUrl = "";
+
+		public static bool UseMockDataStore = string.IsNullOrEmpty(WebServiceUrl);
 
 		public App()
 		{
