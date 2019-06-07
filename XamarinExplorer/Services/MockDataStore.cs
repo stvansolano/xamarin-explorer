@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using XamarinExplorer.Models;
+using Shared;
 
 namespace XamarinExplorer.Services
 {
