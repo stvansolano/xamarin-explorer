@@ -55,7 +55,7 @@
             "ASPNETCORE_ENVIRONMENT": "Development",
             "ASPNETCORE_HTTPS_PORT": "44300"
             }
-        }        
+        }
         // ./ngrok http 5000 --host-header=localhost:5000
     }
 }
