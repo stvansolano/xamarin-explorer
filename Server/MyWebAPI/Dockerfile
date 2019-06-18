@@ -21,3 +21,10 @@ ENTRYPOINT ["dotnet", "MyWebAPI.dll"]
 EXPOSE 80
 # docker build --rm -f "Server/MyWebAPI/Dockerfile" -t mywebapi:latest .
 # docker run --rm -d mywebapi:latest -p 8080:80
+# az acr build --image samples/mywebapi:latest --registry myDemos --file Server/MyWebAPI/Dockerfile .
+# az container create -g cloud-services --name mywebapi-cloud --image samples/mywebapi:latest --ip-address public --ports 443
+# az container create -g cloud-services --name mywebapi-cloud --image mydemos.azurecr.io/samples/mywebapi:latest  --ip-address public --ports 443 80 --environment-variables ASPNETCORE_HTTPS_PORT=443 --registry-password <password>
+#
+# Documentation links: 
+# https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az-container-create
+# https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli
