@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;APP_CENTER</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -16,27 +18,17 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
+    <!--<PackageReference Include="Xamarin.Essentials" Version="1.1.0" />-->
     <PackageReference Include="Microsoft.AppCenter" Version="1.14.0" />
     <PackageReference Include="Mobile.BuildTools" Version="1.4.0.638" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.14.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.14.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
-   
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
-    <Compile Remove="Views\ProductsPage.xaml.cs" />
-    <Compile Remove="Models\Product.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Controls\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Secrets.json" />
-    <None Remove="Secrets.json" />
   </ItemGroup>
-  <ItemGroup>
+   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
