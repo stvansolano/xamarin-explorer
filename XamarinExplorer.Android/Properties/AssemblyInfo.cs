@@ -11,7 +11,7 @@ using Android.App;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Xamarin Explorer")]
-[assembly: AssemblyCopyright("Copyright Esteban Solano Granados 2018")]
+[assembly: AssemblyCopyright("Copyright Esteban Solano Granados")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
