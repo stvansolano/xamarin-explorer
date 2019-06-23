@@ -15,9 +15,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+        
+    <!-- External dependencies -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\AdventureWorks.SqlServer\AdventureWorks.SqlServer.csproj" />
   </ItemGroup>
 </Project>

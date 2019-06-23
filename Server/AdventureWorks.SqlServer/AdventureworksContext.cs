@@ -15,7 +15,19 @@ namespace AdventureWorks.SqlServer.Models
         {
         }
 
-        public virtual DbSet<Address> Address { get; set; }
+		/*
+		
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("");
+            }
+        }
+		*/
+
+		public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<BuildVersion> BuildVersion { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddress { get; set; }
