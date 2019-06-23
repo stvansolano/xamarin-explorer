@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AdventureWorksContext = AdventureWorks.SqlServer.Models.AdventureworksContext;
 using Product = AdventureWorks.SqlServer.Models.Product;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyWebAPI.Controllers
 {
@@ -41,20 +40,69 @@ namespace MyWebAPI.Controllers
 
 		// POST api/values
 		[HttpPost]
-		public void Post([FromBody]string value)
+		public IActionResult Post([FromBody]Product value)
 		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+			var model = Context.Product.Find(value.ProductId);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			model.ListPrice = value.ListPrice;
+			model.ModifiedDate = DateTime.Now;
+			model.Color = value.Color;
+			model.ProductModel = value.ProductModel;
+			model.ProductNumber = value.ProductNumber;
+
+			model.Size = value.Size;
+			model.StandardCost = value.StandardCost;
+			model.Weight = value.Weight;
+
+			Context.Product.Add(model);
+
+			Context.SaveChanges();
+
+			return Ok();
 		}
 
-		// PUT api/values/5
+		// PUT api/[controller]/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody]string value)
+		public async Task<IActionResult> Put(int id, [FromBody]Product value)
 		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+			var model = Context.Product.Find(id);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			model.ListPrice = value.ListPrice;
+			model.ModifiedDate = DateTime.Now;
+			model.Color = value.Color;
+			model.ProductModel = value.ProductModel;
+			model.ProductNumber = value.ProductNumber;
+
+			model.Size = value.Size;
+			model.StandardCost = value.StandardCost;
+			model.Weight = value.Weight;
+
+			Context.Product.Update(model);
+
+			await Context.SaveChangesAsync();
+
+			return Ok();
 		}
 
-		// DELETE api/values/5
+		// DELETE api/[controller]/5
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public IActionResult Delete(int id)
 		{
+			return base.Unauthorized();
 		}
 	}
 }
