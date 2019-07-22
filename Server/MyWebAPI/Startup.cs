@@ -33,10 +33,8 @@ namespace MyWebAPI
 				c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "My API", Version = "v1" });
 			});
 
-			const string DB_CONNECTION = "";
-
 			services.AddDbContext<AdventureWorks.SqlServer.Models.AdventureworksContext>(
-				options => options.UseSqlServer(DB_CONNECTION));
+				options => options.UseSqlServer(Configuration.GetConnectionString("AdventureWorksDatatabase")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
