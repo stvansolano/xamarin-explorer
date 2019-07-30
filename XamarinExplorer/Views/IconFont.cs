@@ -1,5 +1,5 @@
 ﻿using System;
-namespace XamarinExplorer
+namespace XamarinExplorer.Views
 {
 	static class IconFont
 	{
