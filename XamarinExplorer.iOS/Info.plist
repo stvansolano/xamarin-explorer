@@ -38,5 +38,9 @@
 	<string>Permission to pick photos</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Permission to take photos</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/materialdesignicons-webfont.ttf</string>
+	</array>
 </dict>
 </plist>
