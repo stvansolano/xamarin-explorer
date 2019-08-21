@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AdventureWorksContext = AdventureWorks.SqlServer.Models.AdventureworksContext;
 using Product = AdventureWorks.SqlServer.Models.Product;
@@ -10,6 +11,7 @@ namespace MyWebAPI.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[AllowAnonymous]
 	public class ProductsController : ControllerBase
 	{
 		public AdventureWorksContext Context { get; }
