@@ -1,4 +1,5 @@
 ﻿using Shared;
+using Shared.WordPress;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using XamarinExplorer.Services;
@@ -8,7 +9,7 @@ namespace XamarinExplorer.Views
 {
 	public partial class ItemsPage : ContentPage
 	{
-		ListViewModel<Item> _viewModel;
+		ListViewModel<WP_Post> _viewModel;
 
 		public ItemsPage()
 		{
@@ -16,10 +17,10 @@ namespace XamarinExplorer.Views
 
 			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetLargeTitleDisplay(LargeTitleDisplayMode.Always);
 				
-			var repository = DependencyService.Get<IRepository<Item>>();
-			BindingContext = _viewModel = new ListViewModel<Item>(repository);
+			var repository = DependencyService.Get<IRepository<WP_Post>>();
+			BindingContext = _viewModel = new ListViewModel<WP_Post>(repository);
 
-			_viewModel.FilterPredicate = item => MatchesFilter(item.Text) || MatchesFilter(item.Description);
+			_viewModel.FilterPredicate = item => MatchesFilter(item.content.rendered) || MatchesFilter(item.content.rendered);
 			
 			RefreshToolbar.Command = new Command(() => _viewModel.LoadItemsCommand.Execute(new object()));
 

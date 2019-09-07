@@ -6,6 +6,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Shared;
+using WordPress = Shared.WordPress;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamarinExplorer
@@ -26,9 +27,9 @@ namespace XamarinExplorer
             InitializeComponent();
 
 			DependencyService.Register<IHttpFactory, HttpFactory>();
-			DependencyService.Register<IRepository<Item>, MockDataStore>();
+			DependencyService.Register<IRepository<WordPress.WP_Post>, PostRepository>();
 
-			if (UseMockDataStore)
+            if (UseMockDataStore)
 				DependencyService.Register<IRepository<Item>, MockDataStore>();
 			else
 				DependencyService.Register<IRepository<Item>, Repository<Item>>();
