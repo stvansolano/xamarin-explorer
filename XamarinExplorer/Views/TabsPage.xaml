@@ -5,25 +5,21 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="XamarinExplorer.Views.TabsPage"
-            Title="Xamarin Explorer">
-     <TabbedPage.ToolbarItems>
+            Title="Welcome to my WordPress!">
+     <!--<TabbedPage.ToolbarItems>
         <ToolbarItem Text="About" x:Name="AboutToolbarItem">
             <ToolbarItem.Order>
                 <OnPlatform x:TypeArguments="ToolbarItemOrder" Android="Secondary" Default="Default" />
             </ToolbarItem.Order>
         </ToolbarItem>
-    </TabbedPage.ToolbarItems>
+    </TabbedPage.ToolbarItems>-->
     <TabbedPage.Children>
-        <views:MenuPage x:Name="MenuScreen" Title="Home">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png" />
-                    <On Platform="Android" Value="ic_home.png" />
-                </OnPlatform>
-            </NavigationPage.Icon>
-        </views:MenuPage>
-        <views:PluginsPage x:Name="ItemsScreen" Title="Plugins" Icon="{StaticResource PluginsGlyph}">
+        <views:MenuPage x:Name="MenuScreen" Title="Home" Icon="{StaticResource HomeGlyph}" />
+
+
+        <!--<views:PluginsPage x:Name="ItemsScreen" Title="Plugins" Icon="{StaticResource PluginsGlyph}">
            
-        </views:PluginsPage>
+        </views:PluginsPage>-->
+        <views:AboutPage Title="About" Icon="{StaticResource AboutGlyph}" />
     </TabbedPage.Children>
 </TabbedPage>

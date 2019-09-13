@@ -21,7 +21,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Xamarin Explorer" FontAttributes="Bold" FontSize="22" />
+                                <Span Text="My WordPress!" FontAttributes="Bold" FontSize="22" />
                                 <Span Text=" " />
                                 <Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
                             </FormattedString.Spans>

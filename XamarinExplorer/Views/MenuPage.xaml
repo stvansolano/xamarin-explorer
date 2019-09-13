@@ -6,8 +6,17 @@
              Title="Menu">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
+
+            <Frame BackgroundColor="{StaticResource Primary}"
+                   Padding="30" HasShadow="False" Margin="10"
+                   HeightRequest="{x:OnPlatform Android=30, iOS=40}">
+                <Label Text="Recent Posts" TextColor="{StaticResource LightTextColor}"
+                       FontSize="Large" Margin="5,0,0,0" VerticalOptions="Center" />
+            </Frame>
+
             <StackLayout Orientation="Vertical">
-                <ListView ItemsSource="{Binding Menu}" HasUnevenRows="true">
+                <ListView ItemsSource="{Binding Menu}"
+                          HasUnevenRows="true">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -23,6 +32,35 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+
+
+            <Frame BackgroundColor="{StaticResource Primary}"
+                   Padding="30" HasShadow="False" Margin="10"
+                         HeightRequest="{x:OnPlatform Android=50, iOS=40}">
+                <Label Text="All Categories" TextColor="{StaticResource LightTextColor}"
+                       FontSize="Large" Margin="5,0,0,0" VerticalOptions="Center" />
+            </Frame>
+            <ListView ItemsSource="{Binding Categories}" 
+                      VerticalOptions="FillAndExpand" 
+                      HasUnevenRows="true" 
+                      RefreshCommand="{Binding LoadCategoriesCommand}" 
+                      IsPullToRefreshEnabled="true" 
+                      IsRefreshing="{Binding IsRefreshingCategories, Mode=OneWay}" 
+                      CachingStrategy="RecycleElement"
+                      android:ListView.IsFastScrollEnabled="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <views:CardView BindingContext="{Binding}">
+                                <StackLayout Padding="10" Orientation="Vertical">
+                                    <Label Text="{Binding Name}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                </StackLayout>
+                            </views:CardView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

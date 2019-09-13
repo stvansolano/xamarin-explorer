@@ -12,8 +12,8 @@ namespace XamarinExplorer.Views
 		{
 			InitializeComponent();
 
-			MenuScreen.Menu.Add(GetMenuItem("Home", new HomePage()));
-			MenuScreen.Menu.Add(GetMenuItem("About", new AboutPage()));
+			MenuScreen.ViewModel.Menu.Add(GetMenuItem("Home", new HomePage()));
+			MenuScreen.ViewModel.Menu.Add(GetMenuItem("About", new AboutPage()));
 
 			Master = MenuScreen;
 
