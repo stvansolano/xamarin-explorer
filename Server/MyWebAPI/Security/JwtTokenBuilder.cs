@@ -12,19 +12,22 @@ namespace MyWebAPI.Security
 {
     public sealed class JwtTokenBuilder
     {
-        private SecurityKey _securityKey = null;
-        private string _subject = "";
-        private string _issuer = "";
-        private string _audience = "";
-        private static Dictionary<string, string> _claims = new Dictionary<string, string>();
-        private int expiryInMinutes = 5;
+        private SecurityKey _securityKey;
+        private string _subject;
+        private string _issuer;
+        private string _audience;
+		private int _expireMinutes;
+
+		private static Dictionary<string, string> _claims = new Dictionary<string, string>();
 
         public const string CONFIGURATION_AUTHENTICATION_AUDIENCE_KEY = "AUTHENTICATION_AUDIENCE";
         public const string CONFIGURATION_AUTHENTICATION_ISSUER_KEY = "AUTHENTICATION_ISSUER";
         public const string CONFIGURATION_AUTHENTICATION_SHARED_SECRET_KEY = "AUTHENTICATION_SHARED_SECRET";
         public const string CONFIGURATION_AUTHENTICATION_SUBJECT_KEY = "AUTHENTICATION_SUBJECT";
 
-        public const string BEARER_TOKEN_SCHEME = JwtBearerDefaults.AuthenticationScheme;
+		public const int ONE_MONTH = 24 * 60 * 30;
+
+		public const string BEARER_TOKEN_SCHEME = JwtBearerDefaults.AuthenticationScheme;
 
         public JwtTokenBuilder AddSecurityKey(SecurityKey securityKey)
         {
@@ -44,7 +47,7 @@ namespace MyWebAPI.Security
 
         public JwtTokenBuilder AddSubject(string subject)
         {
-            this._subject = subject;
+            _subject = subject;
             return this;
         }
 
@@ -55,7 +58,7 @@ namespace MyWebAPI.Security
                                 .AddSubject(configuration[CONFIGURATION_AUTHENTICATION_SUBJECT_KEY])
                                 .AddIssuer(configuration[CONFIGURATION_AUTHENTICATION_ISSUER_KEY])
                                 .AddAudience(configuration[CONFIGURATION_AUTHENTICATION_AUDIENCE_KEY])
-                                .AddExpiry(20)
+                                .AddExpiry(ONE_MONTH)
                                 .Build();
 
             return token;
@@ -63,13 +66,13 @@ namespace MyWebAPI.Security
 
         public JwtTokenBuilder AddIssuer(string issuer)
         {
-            this._issuer = issuer;
+            _issuer = issuer;
             return this;
         }
 
         public JwtTokenBuilder AddAudience(string audience)
         {
-            this._audience = audience;
+            _audience = audience;
             return this;
         }
 
@@ -87,7 +90,7 @@ namespace MyWebAPI.Security
 
         public JwtTokenBuilder AddExpiry(int expiryInMinutes)
         {
-            this.expiryInMinutes = expiryInMinutes;
+            _expireMinutes = expiryInMinutes;
             return this;
         }
 
@@ -106,7 +109,7 @@ namespace MyWebAPI.Security
                             issuer: _issuer,
                             audience: _audience,
                             claims: claims,
-                            expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
+                            expires: DateTime.UtcNow.AddMinutes(_expireMinutes),
                             signingCredentials: new SigningCredentials(
                                                         _securityKey,
                                                         SecurityAlgorithms.HmacSha256));
