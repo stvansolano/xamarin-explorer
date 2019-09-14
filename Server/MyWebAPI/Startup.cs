@@ -29,32 +29,32 @@ namespace MyWebAPI
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-
-		services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-			.AddJwtBearer(options =>
-			{
-				options.TokenValidationParameters = new TokenValidationParameters
+			services
+				.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+				.AddJwtBearer(options =>
 				{
-					ValidateIssuer = false,
-					ValidateAudience = false,
-					ValidateLifetime = false,
-					ValidateIssuerSigningKey = false,
-					ValidIssuer = Configuration[JwtTokenBuilder.CONFIGURATION_AUTHENTICATION_ISSUER_KEY],
-					ValidAudience = Configuration[JwtTokenBuilder.CONFIGURATION_AUTHENTICATION_AUDIENCE_KEY],
-					IssuerSigningKey = JwtTokenBuilder.JwtSecurityKey.Create(Configuration[JwtTokenBuilder.CONFIGURATION_AUTHENTICATION_SHARED_SECRET_KEY])
-				};
+					options.TokenValidationParameters = new TokenValidationParameters
+					{
+						ValidateIssuer = false,
+						ValidateAudience = false,
+						ValidateLifetime = false,
+						ValidateIssuerSigningKey = false,
+						ValidIssuer = Configuration[JwtTokenBuilder.CONFIGURATION_AUTHENTICATION_ISSUER_KEY],
+						ValidAudience = Configuration[JwtTokenBuilder.CONFIGURATION_AUTHENTICATION_AUDIENCE_KEY],
+						IssuerSigningKey = JwtTokenBuilder.JwtSecurityKey.Create(Configuration[JwtTokenBuilder.CONFIGURATION_AUTHENTICATION_SHARED_SECRET_KEY])
+					};
 
-				options.Events = new JwtBearerEvents
-				{
-					OnAuthenticationFailed = context =>
+					options.Events = new JwtBearerEvents
 					{
-						return Task.CompletedTask;
-					},
-					OnTokenValidated = context =>
-					{
-						return Task.CompletedTask;
-					}
-				};
+						OnAuthenticationFailed = context =>
+						{
+							return Task.CompletedTask;
+						},
+						OnTokenValidated = context =>
+						{
+							return Task.CompletedTask;
+						}
+					};
 			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -86,7 +86,7 @@ namespace MyWebAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "api";
             });
 
             app.UseMvc();
