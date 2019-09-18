@@ -6,6 +6,8 @@ using MyWebAPI.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyWebAPI.Controllers
 {
@@ -37,6 +39,13 @@ namespace MyWebAPI.Controllers
 			}
 
 			return Unauthorized();
+		}
+
+		[Authorize]
+		[HttpGet("/claims")]
+		public ActionResult<IEnumerable<string>> Get()
+		{
+			return new JsonResult(User.Claims.Select(c => new { c.Type, c.Value }));
 		}
 
 		internal string GetToken()
