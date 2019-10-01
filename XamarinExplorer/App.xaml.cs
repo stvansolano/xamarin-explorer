@@ -14,7 +14,7 @@ namespace XamarinExplorer
 	public partial class App : Application
 	{
 		// HTTPS
-		public const string WebServiceUrl = "https://adventure-works1.azurewebsites.net/api/products";
+		public const string WebServiceUrl = "https://checkmywordpress.azurewebsites.net";
 
 		public static bool UseMockDataStore = string.IsNullOrEmpty(WebServiceUrl);
 

@@ -5,62 +5,89 @@
              BackgroundColor="{StaticResource LightBackground}"
              Title="Menu">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <ScrollView>
+            <StackLayout Orientation="Vertical"
+                         BackgroundColor="LightGray">
 
-            <Frame BackgroundColor="{StaticResource Primary}"
-                   Padding="30" HasShadow="False" Margin="10"
-                   HeightRequest="{x:OnPlatform Android=30, iOS=40}">
-                <Label Text="Recent Posts" TextColor="{StaticResource LightTextColor}"
-                       FontSize="Large" Margin="5,0,0,0" VerticalOptions="Center" />
-            </Frame>
+                <Frame BackgroundColor="{StaticResource Primary}"
+                       Padding="10" HasShadow="False" Margin="10,10,10,0"
+                       HeightRequest="{x:OnPlatform Android=20, iOS=30}">
+                    <Label Text="Recent Posts" TextColor="{StaticResource LightTextColor}"
+                           FontSize="Medium" Margin="5,0,0,0" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                </Frame>
 
-            <StackLayout Orientation="Vertical">
-                <ListView ItemsSource="{Binding Menu}"
-                          HasUnevenRows="true">
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <ListView ItemsSource="{Binding Menu}" BackgroundColor="White"
+                              HeightRequest="{x:OnPlatform Android=100, iOS=200}"
+                              Margin="10,0,10,0"
+                              HasUnevenRows="true">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="10">
+                                        <Image Source="{Binding Icon}" />
+                                        <Label Text="{Binding Text}" FontSize="Medium" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Command}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <Frame BackgroundColor="{StaticResource Primary}"
+                       Padding="10" HasShadow="False" Margin="10,0,10,0"
+                       HeightRequest="{x:OnPlatform Android=30, iOS=30}">
+                    <Label Text="All Categories" TextColor="{StaticResource LightTextColor}"
+                           FontSize="Medium" Margin="5,0,0,0" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                </Frame>
+
+                <CarouselView HeightRequest="{x:OnPlatform Android=80, iOS=100}"
+                              VerticalOptions="End" Margin="0,0,0,5"
+                              ItemsSource="{Binding Categories}"
+                        x:Name="pgCarousel">
+                    <CarouselView.ItemsLayout>
+                        <ListItemsLayout Orientation="Horizontal" SnapPointsAlignment="Center" SnapPointsType="MandatorySingle" />
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid WidthRequest="{Binding Source={x:Reference pgCarousel}, Path=Width}">
+                                <Frame Margin="10,0,10,0" BackgroundColor="{Binding BackgroundColor}" HorizontalOptions="Fill">
+                                    <Grid>
+                                        <Label TextColor="Black" Text="{Binding Name}" />
+                                    </Grid>
+                                </Frame>
+                                    <Image TranslationX="{Binding Position}" Margin="20" Source="{Binding Photo}"  />
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <!--
+                <ListView ItemsSource="{Binding Categories}" 
+                          VerticalOptions="FillAndExpand" 
+                          HasUnevenRows="true" 
+                          RefreshCommand="{Binding LoadCategoriesCommand}" 
+                          IsPullToRefreshEnabled="true" 
+                          IsRefreshing="{Binding IsRefreshingCategories, Mode=OneWay}" 
+                          CachingStrategy="RecycleElement"
+                          android:ListView.IsFastScrollEnabled="True"
+                          SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal" Padding="10">
-                                    <!--<Image Source="{Binding Icon}" />-->
-                                    <Label Text="{Binding Text}" FontSize="Medium" />
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Command}" />
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
+                                <views:CardView BindingContext="{Binding}">
+                                    <StackLayout Padding="10" Orientation="Vertical">
+                                        <Label Text="{Binding Name}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                    </StackLayout>
+                                </views:CardView>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                -->
             </StackLayout>
-
-
-            <Frame BackgroundColor="{StaticResource Primary}"
-                   Padding="30" HasShadow="False" Margin="10"
-                         HeightRequest="{x:OnPlatform Android=50, iOS=40}">
-                <Label Text="All Categories" TextColor="{StaticResource LightTextColor}"
-                       FontSize="Large" Margin="5,0,0,0" VerticalOptions="Center" />
-            </Frame>
-            <ListView ItemsSource="{Binding Categories}" 
-                      VerticalOptions="FillAndExpand" 
-                      HasUnevenRows="true" 
-                      RefreshCommand="{Binding LoadCategoriesCommand}" 
-                      IsPullToRefreshEnabled="true" 
-                      IsRefreshing="{Binding IsRefreshingCategories, Mode=OneWay}" 
-                      CachingStrategy="RecycleElement"
-                      android:ListView.IsFastScrollEnabled="True"
-                      SeparatorVisibility="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <views:CardView BindingContext="{Binding}">
-                                <StackLayout Padding="10" Orientation="Vertical">
-                                    <Label Text="{Binding Name}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-                                </StackLayout>
-                            </views:CardView>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

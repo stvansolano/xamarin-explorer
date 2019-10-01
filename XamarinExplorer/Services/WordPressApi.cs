@@ -10,7 +10,7 @@ namespace XamarinExplorer.Services
 {
     public static class WordPressApi
     {
-        const string URL_BASE = "http://checkmywordpress.azurewebsites.net";
+        const string URL_BASE = App.WebServiceUrl;
 
         private static Lazy<IWordPressApi> _instance = new Lazy<IWordPressApi>(
             () => RestService.For<IWordPressApi>(URL_BASE)

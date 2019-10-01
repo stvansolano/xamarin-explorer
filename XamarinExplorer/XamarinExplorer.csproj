@@ -21,12 +21,14 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Refit" Version="4.7.51" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
-    <PackageReference Include="Microsoft.AppCenter" Version="2.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
+    <PackageReference Include="Microsoft.AppCenter" Version="1.14.0" />
     <PackageReference Include="Mobile.BuildTools" Version="1.4.0.638" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.1" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.14.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.14.0" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="XamForms.HtmlLabel" Version="1.0.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Secrets.json" />
