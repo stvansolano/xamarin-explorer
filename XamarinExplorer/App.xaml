@@ -36,7 +36,6 @@
             <Color x:Key="DarkSeparatorColor">#757575</Color>
             <Color x:Key="ActionColor">#00796B</Color>-->
 
-            -->
             <!-- Red Palette -->
             <!--<Color x:Key="Primary">#F44336</Color>
             <Color x:Key="PrimaryDark">#D32F2F</Color>
