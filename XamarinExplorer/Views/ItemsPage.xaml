@@ -43,7 +43,7 @@
                                                 <Image Source="{StaticResource CartGlyph}" BackgroundColor="DarkGray"  HeightRequest="40" WidthRequest="40"
                                                        Aspect="Fill"
                                                        />
-                                                <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
                                                        FontSize="16" HorizontalOptions="FillAndExpand" />
                                                 <Switch IsToggled="false" HorizontalOptions="End" OnColor="{StaticResource Accent}" />
                                             </StackLayout>
