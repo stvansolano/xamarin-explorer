@@ -20,9 +20,9 @@
                                  Title="Camera" HorizontalTextAlignment="Center" Image="{StaticResource CameraIcon}"
                                  />
             
-            <local:CardImageView Grid.Row="0" Grid.Column="1" Margin="5" BorderColor="Transparent" BackgroundColor="Transparent"
-                                 Command="{Binding OpenPluginPage}" CommandParameter="Compass" 
-                                 Title="Compass" HorizontalTextAlignment="Center" Image="{StaticResource CompassIcon}"
+            <local:CardImageView Grid.Row="0" Grid.Column="1" Margin="5" BorderColor="Transparent" BackgroundColor="DarkGray"
+                                 Command="{Binding OpenPluginPage}" CommandParameter="Compass"
+                                 Title="Compass" HorizontalTextAlignment="Center" Image="{StaticResource CompassGlyph}"
                                  />
 
             <!--

@@ -75,6 +75,16 @@
                     FontFamily="{StaticResource MaterialFontFamily}"
                     Glyph="{x:Static views:IconFont.VideoInputComponent}"
                     Size="{OnPlatform iOS=40, Android=44}" />
+            
+            <FontImageSource x:Key="CompassGlyph"
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{x:Static views:IconFont.CompassOutline}"
+                    Size="{OnPlatform iOS=40, Android=44}" />
+
+            <FontImageSource x:Key="CartGlyph"
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{x:Static views:IconFont.CartOutline}"
+                    Size="{OnPlatform iOS=40, Android=44}" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

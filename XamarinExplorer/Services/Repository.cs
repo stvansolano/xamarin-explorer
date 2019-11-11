@@ -4,9 +4,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 using Xamarin.Forms;
-//using Xamarin.Essentials;
 
 namespace XamarinExplorer.Services
 {
@@ -24,7 +23,7 @@ namespace XamarinExplorer.Services
 
 		public virtual async Task<IEnumerable<T>> GetAsync(bool forceRefresh = false)
 		{
-			if (forceRefresh && CrossConnectivity.Current.IsConnected)
+			if (forceRefresh && Connectivity.NetworkAccess == NetworkAccess.Internet)
 			{
 				var json = await GetClient().GetStringAsync(string.Empty);
 				_items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<T>>(json));
@@ -34,7 +33,7 @@ namespace XamarinExplorer.Services
 		}
 		public virtual async Task<T> GetAsync(string id)
 		{
-			if (id != null && CrossConnectivity.Current.IsConnected)
+			if (id != null && Connectivity.NetworkAccess == NetworkAccess.Internet)
 			{
 				var json = await GetClient().GetStringAsync($"{id}");
 				return await Task.Run(() => JsonConvert.DeserializeObject<T>(json));
@@ -45,9 +44,9 @@ namespace XamarinExplorer.Services
 
 		public virtual async Task<bool> AddAsync(T item)
 		{
-			if (item == null || !CrossConnectivity.Current.IsConnected)
+			if (item == null || Connectivity.NetworkAccess != NetworkAccess.Internet)
 				return false;
-
+			 
 			var serializedItem = JsonConvert.SerializeObject(item);
 
 			var response = await GetClient().PostAsync("", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
@@ -57,7 +56,7 @@ namespace XamarinExplorer.Services
 
 		public virtual async Task<bool> UpdateAsync(object id, T item)
 		{
-			if (item == null || id == null || !CrossConnectivity.Current.IsConnected)
+			if (item == null || id == null || Connectivity.NetworkAccess != NetworkAccess.Internet)
 				return false;
 
 			var serializedItem = JsonConvert.SerializeObject(item);
@@ -71,7 +70,7 @@ namespace XamarinExplorer.Services
 
 		public virtual async Task<bool> DeleteAsync(object id)
 		{
-			if (id != null && !CrossConnectivity.Current.IsConnected)
+			if (id != null && Connectivity.NetworkAccess != NetworkAccess.Internet)
 				return false;
 
 			var response = await GetClient().DeleteAsync($"{id}");
