@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using XamarinExplorer.Helpers;
 
 namespace XamarinExplorer
@@ -26,6 +27,21 @@ namespace XamarinExplorer
 
 				return startup;
 			}
+		}
+	}
+
+	public static class AnalyticEvents
+	{
+		public const string ItemOpened = "ItemOpened";
+		public const string HandledException = "HandledException";
+
+		public static Dictionary<string, string> FromExceptionArgs(Exception ex)
+		{
+			return new Dictionary<string, string> {
+				{ "Exception", ex.GetType().Name },
+				{ "InnerException", ex.InnerException?.Message },
+				{ "Source", ex.Source }
+			};
 		}
 	}
 }

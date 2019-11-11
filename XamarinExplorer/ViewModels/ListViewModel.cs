@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 using XamarinExplorer.Services;
 
@@ -55,6 +56,7 @@ namespace XamarinExplorer.ViewModels
 			catch (Exception ex)
 			{
 				Debug.WriteLine(ex);
+				Analytics.TrackEvent(AnalyticEvents.HandledException, AnalyticEvents.FromExceptionArgs(ex));
 			}
 			finally
 			{
