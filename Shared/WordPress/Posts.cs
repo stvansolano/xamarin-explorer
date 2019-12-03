@@ -11,7 +11,7 @@ namespace Shared.WordPress
 
     public class Title
     {
-        public string rendered { get; set; }
+        public string Rendered { get; set; }
     }
 
     public class Content
@@ -21,7 +21,7 @@ namespace Shared.WordPress
 
     public class Excerpt
     {
-        public string rendered { get; set; }
+        public string Rendered { get; set; }
     }
 
     public class Self
@@ -103,7 +103,7 @@ namespace Shared.WordPress
         public string status { get; set; }
         public string type { get; set; }
         public string link { get; set; }
-        public Title title { get; set; }
+        public Title Title { get; set; }
         public Content content { get; set; }
         public Excerpt excerpt { get; set; }
         public int author { get; set; }

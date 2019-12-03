@@ -23,5 +23,8 @@ namespace XamarinExplorer.Services
     {
         [Get("/wp-json/wp/v2/posts")]
         Task<WP_Post[]> GetPosts();
-    }
+
+		[Get("/wp-json/wp/v2/categories")]
+		Task<WP_Category[]> GetCategories();
+	}
 }

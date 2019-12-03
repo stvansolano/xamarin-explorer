@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinExplorer.Views.MenuPage" 
              BackgroundColor="{StaticResource LightBackground}"
+             xmlns:views="clr-namespace:XamarinExplorer.Views"
              Title="Menu">
     <ContentPage.Content>
         <ScrollView>
@@ -44,7 +45,7 @@
                            FontSize="Medium" Margin="5,0,0,0" VerticalOptions="Center" VerticalTextAlignment="Center" />
                 </Frame>
 
-                <CarouselView HeightRequest="{x:OnPlatform Android=80, iOS=100}"
+                <!--<CarouselView HeightRequest="{x:OnPlatform Android=80, iOS=100}"
                               VerticalOptions="End" Margin="0,0,0,5"
                               ItemsSource="{Binding Categories}"
                         x:Name="pgCarousel">
@@ -63,16 +64,15 @@
                             </Grid>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
-                </CarouselView>
-                <!--
-                <ListView ItemsSource="{Binding Categories}" 
-                          VerticalOptions="FillAndExpand" 
+                </CarouselView>-->
+                
+                <ListView ItemsSource="{Binding Categories}"
+                          VerticalOptions="End"
                           HasUnevenRows="true" 
                           RefreshCommand="{Binding LoadCategoriesCommand}" 
                           IsPullToRefreshEnabled="true" 
                           IsRefreshing="{Binding IsRefreshingCategories, Mode=OneWay}" 
                           CachingStrategy="RecycleElement"
-                          android:ListView.IsFastScrollEnabled="True"
                           SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -85,8 +85,7 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
-                -->
+                </ListView> 
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

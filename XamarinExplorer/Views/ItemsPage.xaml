@@ -24,7 +24,7 @@
                     TextColor="White"
                     />
 
-            <ListView x:Name="ItemsListView" 
+           <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Items}" 
                       VerticalOptions="FillAndExpand" 
                       HasUnevenRows="true" 
@@ -37,19 +37,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                                    <views:CardView>
-                                        <StackLayout Padding="10" Orientation="Vertical">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Image Source="{StaticResource CartGlyph}" BackgroundColor="DarkGray"  HeightRequest="40" WidthRequest="40"
-                                                       Aspect="Fill"
-                                                       />
-                                                <Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
-                                                       FontSize="16" HorizontalOptions="FillAndExpand" />
-                                                <Switch IsToggled="false" HorizontalOptions="End" OnColor="{StaticResource Accent}" />
-                                            </StackLayout>
-                                            <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-                                        </StackLayout>
-                                    </views:CardView>
+                            <views:CardView BindingContext="{Binding}"
+                                            HeightRequest="{x:OnPlatform iOS=60, Android=80}">
+                                <StackLayout Padding="10" Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Title.Rendered}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="20" HorizontalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Excerpt.Rendered}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                </StackLayout>
+                            </views:CardView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
