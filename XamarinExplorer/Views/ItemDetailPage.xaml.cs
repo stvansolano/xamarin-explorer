@@ -11,7 +11,7 @@ namespace XamarinExplorer.Views
 		{
 			BindingContext = new
 			{
-				Title = (model is WP_Post p ? p?.Title?.Rendered : string.Empty),
+				Title = (model is Item p ? p?.Text : string.Empty),
 				Model = model
 			};
 

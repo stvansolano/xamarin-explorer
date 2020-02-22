@@ -13,9 +13,8 @@
     </ContentPage.ToolbarItems>
    <ContentPage.Content xmlns:views="clr-namespace:XamarinExplorer.Views">
         <StackLayout Orientation="Vertical" VerticalOptions="Fill">
-            <SearchBar HeightRequest="40"
-                       BackgroundColor="{StaticResource PrimaryDark}"
-                       Text="{Binding Filter}" Placeholder="Type to search"
+            <SearchBar HeightRequest="60"
+                       Text="{Binding Filter}" Placeholder="Type to search" PlaceholderColor="White"
                        TextColor="{StaticResource LightTextColor}"
                        />
 
@@ -41,10 +40,10 @@
                                             HeightRequest="{x:OnPlatform iOS=60, Android=80}">
                                 <StackLayout Padding="10" Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Title.Rendered}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                        <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
                                                 FontSize="20" HorizontalOptions="FillAndExpand" />
                                     </StackLayout>
-                                    <Label Text="{Binding Excerpt.Rendered}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                    <Label Text="{Binding Description}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                                 </StackLayout>
                             </views:CardView>
                         </ViewCell>

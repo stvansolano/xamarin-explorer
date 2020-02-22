@@ -4,8 +4,8 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["Server/MyWebAPI/MyWebAPI.csproj", "Server/MyWebAPI/"]
-COPY ["Shared/Shared.csproj", "Shared/"]
+COPY ["Server/MyWebAPI", "Server/MyWebAPI/"]
+COPY ["Server/AdventureWorks.SqlServer", "Server/AdventureWorks.SqlServer"]
 RUN dotnet restore "Server/MyWebAPI/MyWebAPI.csproj"
 COPY . .
 WORKDIR "/src/Server/MyWebAPI"

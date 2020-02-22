@@ -6,9 +6,8 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Shared;
-using WordPress = Shared.WordPress;
-using XamarinExplorer.WordPress;
-using Shared.WordPress;
+using Shared.AdventureWorks;
+using AdventureWorks.SqlServer.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamarinExplorer
@@ -16,7 +15,7 @@ namespace XamarinExplorer
 	public partial class App : Application
 	{
 		// HTTPS
-		public const string WebServiceUrl = "https://checkmywordpress.azurewebsites.net";
+		public const string WebServiceUrl = AdventureWorksApi.URL_BASE;
 
 		public static bool UseMockDataStore = string.IsNullOrEmpty(WebServiceUrl);
 
@@ -29,8 +28,8 @@ namespace XamarinExplorer
             InitializeComponent();
 
 			DependencyService.Register<IHttpFactory, HttpFactory>();
-			DependencyService.Register<IRepository<WP_Post>, PostRepository>();
-			DependencyService.Register<IRepository<WP_Category>, CategoryRepository>();
+			DependencyService.Register<IRepository<Product>, ProductRepository>();
+			DependencyService.Register<IRepository<ProductCategory>, CategoryRepository>();
 
 			if (UseMockDataStore)
 				DependencyService.Register<IRepository<Item>, MockDataStore>();

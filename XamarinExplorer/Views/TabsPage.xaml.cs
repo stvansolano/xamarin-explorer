@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
+using AdventureWorks.SqlServer.Models;
 using Microsoft.AppCenter.Crashes;
+using Shared;
 using Shared.WordPress;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using XamarinExplorer.Services;
+using AdventureWorks.SqlServer.Models;
 
 namespace XamarinExplorer.Views
 {
@@ -36,16 +39,16 @@ namespace XamarinExplorer.Views
 
 			try
 			{
-				var data = (await DependencyService.Get<IRepository<WP_Post>>()
+				var data = (await DependencyService.Get<IRepository<Product>>()
 												   .GetAsync()).Take(5);
 
 				MenuScreen.ViewModel.Menu.Clear();
 
 				foreach (var item in data)
 				{
-					MenuScreen.ViewModel.Menu.Add(GetMenuItem(item.Title.Rendered, new ItemDetailPage(item)));
+					MenuScreen.ViewModel.Menu.Add(GetMenuItem(item.Name, new ItemDetailPage(item)));
 				}
-				MenuScreen.ViewModel.Menu.Add(GetMenuItem("See all Posts", new ItemsPage()));
+				MenuScreen.ViewModel.Menu.Add(GetMenuItem("See all Products", new ItemsPage()));
 			}
 			catch (Exception ex)
 			{

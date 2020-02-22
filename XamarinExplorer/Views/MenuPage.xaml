@@ -13,7 +13,7 @@
                 <Frame BackgroundColor="{StaticResource Primary}"
                        Padding="10" HasShadow="False" Margin="10,10,10,0"
                        HeightRequest="{x:OnPlatform Android=20, iOS=30}">
-                    <Label Text="Recent Posts" TextColor="{StaticResource LightTextColor}"
+                    <Label Text="Recently Added" TextColor="{StaticResource LightTextColor}"
                            FontSize="Medium" Margin="5,0,0,0" VerticalOptions="Center" VerticalTextAlignment="Center" />
                 </Frame>
 

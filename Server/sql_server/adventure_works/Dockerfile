@@ -36,4 +36,7 @@ RUN ( /opt/mssql/bin/sqlservr --accept-eula & ) | grep -q "Service Broker manage
 # az account list --output table
 # az account set --subscription "YOUR SUSCRIPTION NAME"
 
-# az acr build --image samples/mywebapi:latest --registry myDemos --file Server/MyWebAPI/Dockerfile .
+# cd xamarin-explorer && docker build --rm -f "Server/MyWebAPI/Dockerfile" -t mywebapi:latest .
+# az acr build --image samples/mywebapi:latest --registry myDemos --file Server/sql_server/adventure_works/Dockerfile "Server/sql_server/adventure_works"
+
+# ./ngrok http 5000 --host-header=localhost:5000

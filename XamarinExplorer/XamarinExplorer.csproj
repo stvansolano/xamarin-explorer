@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <!--<TargetFrameworks>netcoreapp2.2;xamarinios10;MonoAndroid90;uap10.0.16299</TargetFrameworks>-->
+    <TargetFramework>netstandard2.0</TargetFramework>
         <!--;netcoreapp2.2-->
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
@@ -39,5 +40,7 @@
   </ItemGroup>
    <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\Services\Shared.AdventureWorks\Shared.AdventureWorks.csproj" />
+    <ProjectReference Include="..\Server\AdventureWorks.SqlServer\AdventureWorks.SqlServer.csproj" />
   </ItemGroup>
 </Project>

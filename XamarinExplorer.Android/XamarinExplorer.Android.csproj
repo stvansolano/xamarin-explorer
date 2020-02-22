@@ -95,7 +95,7 @@
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\XamarinExplorer\XamarinExplorer.csproj">
-      <Project>{5DA86916-4D69-490F-AB4F-04398699475B}</Project>
+      <Project>{7618831E-4074-4D55-86E7-C79F228A4B4F}</Project>
       <Name>XamarinExplorer</Name>
     </ProjectReference>
   </ItemGroup>

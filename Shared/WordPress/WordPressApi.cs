@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Refit;
-using Shared.WordPress;
-using Xamarin.Forms;
 
-namespace XamarinExplorer.Services
+namespace Shared.WordPress.Services
 {
     public static class WordPressApi
     {
-        const string URL_BASE = App.WebServiceUrl;
+        const string URL_BASE = "https://checkmywordpress.azurewebsites.net";
 
         private static Lazy<IWordPressApi> _instance = new Lazy<IWordPressApi>(
             () => RestService.For<IWordPressApi>(URL_BASE)

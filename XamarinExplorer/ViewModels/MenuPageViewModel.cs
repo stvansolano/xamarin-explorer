@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AdventureWorks.SqlServer.Models;
 using Microsoft.AppCenter.Crashes;
-using Shared.WordPress;
+using Shared;
 using Xamarin.Forms;
-using XamarinExplorer.Services;
 
 namespace XamarinExplorer.ViewModels
 {
@@ -15,8 +15,8 @@ namespace XamarinExplorer.ViewModels
 		private bool _isRefreshingCategories;
 
 		public ICollection<MenuItem> Menu { get; } = new ObservableCollection<MenuItem>();
-		public IList<WP_Category> Categories { get; } = new ObservableCollection<WP_Category>();
-		public IList<WP_Post> Posts { get; } = new ObservableCollection<WP_Post>();
+		public IList<ProductCategory> Categories { get; } = new ObservableCollection<ProductCategory>();
+		public IList<Product> Posts { get; } = new ObservableCollection<Product>();
 		public ICommand LoadCategoriesCommand { get; set; }
 
 		public MenuPageViewModel()
@@ -39,7 +39,7 @@ namespace XamarinExplorer.ViewModels
 
 			try
 			{
-				var data = await DependencyService.Get<IRepository<WP_Category>>().GetAsync();
+				var data = await DependencyService.Get<IRepository<ProductCategory>>().GetAsync();
 
 				Categories.Clear();
 
