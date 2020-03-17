@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <!--<TargetFrameworks>netcoreapp2.2;xamarinios10;MonoAndroid90;uap10.0.16299</TargetFrameworks>-->
+    <TargetFramework>netstandard2.0</TargetFramework>
         <!--;netcoreapp2.2-->
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
@@ -18,19 +19,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Microsoft.AppCenter" Version="2.6.1" />
     <PackageReference Include="Mobile.BuildTools" Version="1.4.0.638" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.1" />
+    <PackageReference Include="Refit" Version="5.0.23" />
+        
+    <PackageReference Include="XamForms.HtmlLabel" Version="1.0.0" />
+
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="3.0.1" />
+    <PackageReference Include="Xamanimation" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />  
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.1.8" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Secrets.json" />
   </ItemGroup>
    <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\Services\Shared.AdventureWorks\Shared.AdventureWorks.csproj" />
+    <ProjectReference Include="..\Server\AdventureWorks.SqlServer\AdventureWorks.SqlServer.csproj" />
   </ItemGroup>
 </Project>

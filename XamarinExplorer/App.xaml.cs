@@ -6,6 +6,8 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Shared;
+using Shared.AdventureWorks;
+using AdventureWorks.SqlServer.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamarinExplorer
@@ -13,7 +15,7 @@ namespace XamarinExplorer
 	public partial class App : Application
 	{
 		// HTTPS
-		public const string WebServiceUrl = "https://adventure-works1.azurewebsites.net/api/products";
+		public const string WebServiceUrl = AdventureWorksApi.URL_BASE;
 
 		public static bool UseMockDataStore = string.IsNullOrEmpty(WebServiceUrl);
 
@@ -26,7 +28,8 @@ namespace XamarinExplorer
             InitializeComponent();
 
 			DependencyService.Register<IHttpFactory, HttpFactory>();
-			DependencyService.Register<IRepository<Item>, MockDataStore>();
+			DependencyService.Register<IRepository<Product>, ProductRepository>();
+			DependencyService.Register<IRepository<ProductCategory>, CategoryRepository>();
 
 			if (UseMockDataStore)
 				DependencyService.Register<IRepository<Item>, MockDataStore>();

@@ -5,6 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+using XamarinExplorer;
+
 namespace XamarinExplorer.iOS
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -22,6 +24,7 @@ namespace XamarinExplorer.iOS
 		//
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
+			Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
 			global::Xamarin.Forms.Forms.Init();
 			LoadApplication(new App());
 

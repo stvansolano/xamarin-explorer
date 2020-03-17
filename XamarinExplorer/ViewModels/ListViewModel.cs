@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
+using Shared;
 using Xamarin.Forms;
-using XamarinExplorer.Services;
 
 namespace XamarinExplorer.ViewModels
 {

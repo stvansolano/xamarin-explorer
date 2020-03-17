@@ -51,6 +51,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
@@ -59,8 +60,8 @@
     <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms">
-      <Version>4.1.0.581479</Version>
+    <PackageReference Include="Refit">
+      <Version>4.7.51</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +95,7 @@
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\XamarinExplorer\XamarinExplorer.csproj">
-      <Project>{5DA86916-4D69-490F-AB4F-04398699475B}</Project>
+      <Project>{7618831E-4074-4D55-86E7-C79F228A4B4F}</Project>
       <Name>XamarinExplorer</Name>
     </ProjectReference>
   </ItemGroup>

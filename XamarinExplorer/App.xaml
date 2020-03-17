@@ -84,6 +84,17 @@
                     FontFamily="{StaticResource MaterialFontFamily}"
                     Glyph="{x:Static views:IconFont.CartOutline}"
                     Size="{OnPlatform iOS=40, Android=44}" />
+            
+            <FontImageSource x:Key="HomeGlyph"
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{x:Static views:IconFont.Home}"
+                    Size="{OnPlatform iOS=40, Android=44}" />
+
+            <FontImageSource x:Key="AboutGlyph"
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{x:Static views:IconFont.Information}"
+                    Size="{OnPlatform iOS=40, Android=44}" />
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
