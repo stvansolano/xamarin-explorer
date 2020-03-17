@@ -25,6 +25,6 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Server/MyWebAPI/Dockerfile'
-        buildContext: '/Server/MyWebAPI'
+        buildContext: '.'
         tags: |
           $(tag)
