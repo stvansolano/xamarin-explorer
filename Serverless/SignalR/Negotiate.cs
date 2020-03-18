@@ -13,6 +13,8 @@ namespace SignalR
 
     public static class SignalRNegotiate
     {
+        // POST: http://localhost:7071/api/negotiate
+        
         [FunctionName("Negotiate")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "negotiate")] HttpRequest req,
