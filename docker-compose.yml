@@ -2,8 +2,8 @@ version: "3.4"
 services:
   mywebapi:
     build:
-      context: Server/MyWebAPI
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Server/MyWebAPI/Dockerfile
     image: mywebapi:latest
     container_name: mywebapi
     hostname: mywebapi
@@ -20,3 +20,26 @@ services:
     environment:
       SA_PASSWORD: "Password.123"
       ACCEPT_EULA: "Y"
+
+  signalr:
+    build: 
+      context: 'Serverless/SignalR'
+      dockerfile: 'Dockerfile'
+    ports:
+    - "7070:80"
+    container_name: signalr-functions
+    depends_on:
+    - mongo
+    environment:
+    - MongoDbConnection=mongodb://mongo:27017
+    - MongoDbDatabase=ToDos
+    - MongoDbCollection=MyToDos
+    - AzureSignalRConnectionString=[KEY_HERE]
+    #env_file:
+    #- web-variables.env
+    
+  mongo:
+    image: mongo:4.0.4
+    container_name: mongo
+    ports:
+    - "27017:27017"
