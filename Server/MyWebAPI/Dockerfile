@@ -5,9 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 WORKDIR /src
-COPY ["Server/MyWebAPI/MyWebAPI.csproj", "Server/MyWebAPI/"]
-RUN dotnet restore "Server/MyWebAPI/MyWebAPI.csproj"
-COPY . .
+COPY ["Server", "./Server"] 
+COPY ["Shared", "./Shared"] 
+
+RUN dotnet restore "./Server/MyWebAPI/MyWebAPI.csproj"
 WORKDIR "/src/Server/MyWebAPI"
 RUN dotnet build "MyWebAPI.csproj" -c Release -o /app/build
 
@@ -18,7 +19,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MyWebAPI.dll"]
-
 
 # docker build --rm -f "Server/MyWebAPI/Dockerfile" -t mywebapi:latest .
 # docker run --rm -d mywebapi:latest -p 8080:80
