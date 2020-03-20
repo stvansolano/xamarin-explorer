@@ -12,3 +12,5 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     AzureFunctionsJobHost__Logging__Console__IsEnabled=true
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
+
+# az acr build --image signalrfunctions:latest --registry myDemos --file Serverless/SignalR/Dockerfile .
