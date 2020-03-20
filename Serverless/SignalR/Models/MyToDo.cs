@@ -13,10 +13,10 @@ namespace Serverless
         public string Id { get; set; }
 
 
-        [BsonElement(nameof(Text))]
-        public string Text { get; set; }
+        [BsonElement(nameof(Title))]
+        public string Title { get; set; }
 
-        [BsonElement(nameof(Description))]
-        public string Description { get; set; }
+        [BsonElement(nameof(IsCompleted))]
+        public bool IsCompleted { get; set; }
     }
 }

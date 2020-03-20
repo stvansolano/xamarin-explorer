@@ -6,6 +6,8 @@
 
 `func start`
 
+`func azure functionapp publish my-signalr-functions`
+
 ## Azure functions v3 & Docker
 
 - https://dev.to/azure/develop-azure-functions-using-net-core-3-0-gcm
