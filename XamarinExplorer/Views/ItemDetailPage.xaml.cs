@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AppCenter.Analytics;
-using Shared;
-using Shared.WordPress;
+﻿using Shared;
 
 namespace XamarinExplorer.Views
 {

@@ -14,10 +14,7 @@ namespace XamarinExplorer
 {
 	public partial class App : Application
 	{
-		// HTTPS
-		public const string WebServiceUrl = AdventureWorksApi.URL_BASE;
-
-		public static bool UseMockDataStore = string.IsNullOrEmpty(WebServiceUrl);
+		public static bool UseMockDataStore = string.IsNullOrEmpty(AppConstants.WebServiceUrl);
 
 		public App()
 		{
@@ -34,9 +31,10 @@ namespace XamarinExplorer
 			if (UseMockDataStore)
 				DependencyService.Register<IRepository<Item>, MockDataStore>();
 			else
-				DependencyService.Register<IRepository<Item>, Repository<Item>>();
+				DependencyService.Register<IRepository<Item>, ToDoItemsRepository>();
 
-			MainPage = new NavigationPage(new TabsPage());
+			MainPage = new NavigationPage(new ItemsPage());
+			//MainPage = new NavigationPage(new TabsPage());
 		}
 
 		protected override void OnStart()

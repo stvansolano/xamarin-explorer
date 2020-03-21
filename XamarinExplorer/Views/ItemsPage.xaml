@@ -13,16 +13,19 @@
     </ContentPage.ToolbarItems>
    <ContentPage.Content xmlns:views="clr-namespace:XamarinExplorer.Views">
         <StackLayout Orientation="Vertical" VerticalOptions="Fill">
-            <SearchBar HeightRequest="60"
+            <!--<SearchBar HeightRequest="60"
                        Text="{Binding Filter}" Placeholder="Type to search" PlaceholderColor="White"
                        TextColor="{StaticResource LightTextColor}"
-                       />
+                       />-->
 
-            <Button Command="{Binding AddMoreCommand}" Margin="20"
-                    Text="Add more" BackgroundColor="{StaticResource ActionColor}"
-                    TextColor="White"
-                    />
-
+            <Grid Margin="10">
+                <Entry Placeholder="To do +" Text="{Binding ToDoText}" MinimumWidthRequest="200" />
+                <Button Command="{Binding AddCommand}" Margin="5,5,10,5" WidthRequest="60"
+                        Text="+" BackgroundColor="{StaticResource ActionColor}"
+                        TextColor="White" HorizontalOptions="End"
+                        />
+            </Grid>
+            
            <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Items}" 
                       VerticalOptions="FillAndExpand" 
@@ -43,7 +46,7 @@
                                         <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
                                                 FontSize="20" HorizontalOptions="FillAndExpand" />
                                     </StackLayout>
-                                    <Label Text="{Binding Description}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                    <Label Text="{Binding Text}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                                 </StackLayout>
                             </views:CardView>
                         </ViewCell>

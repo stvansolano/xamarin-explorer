@@ -6,6 +6,8 @@ namespace XamarinExplorer
 {
 	public static class AppConstants
 	{
+		public const string WebServiceUrl = "https://my-signalr-functions.azurewebsites.net/api/";
+
 		public static string AppCenterSecret
 		{
 			get

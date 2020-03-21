@@ -75,7 +75,7 @@ namespace XamarinExplorer.ViewModels
 			}
 			set 
 			{
-				SetProperty<string>(ref _filter, value);
+				SetProperty(ref _filter, value);
 				OnPropertyChanged(nameof(Items));
 			}
 		}
