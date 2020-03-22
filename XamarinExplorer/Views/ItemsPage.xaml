@@ -41,13 +41,14 @@
                         <ViewCell>
                             <views:CardView BindingContext="{Binding}"
                                             HeightRequest="{x:OnPlatform iOS=60, Android=80}">
-                                <StackLayout Padding="10" Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
-                                                FontSize="20" HorizontalOptions="FillAndExpand" />
+                                <Grid Padding="10" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                                        <!--<Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="20" HorizontalOptions="FillAndExpand" />-->
+                                        <Label Text="{Binding Text}" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
                                     </StackLayout>
-                                    <Label Text="{Binding Text}" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-                                </StackLayout>
+                                    <CheckBox IsChecked="{Binding IsCompleted}" HorizontalOptions="End" />
+                                </Grid>
                             </views:CardView>
                         </ViewCell>
                     </DataTemplate>

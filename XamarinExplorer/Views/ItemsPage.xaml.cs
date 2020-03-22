@@ -46,12 +46,17 @@ namespace XamarinExplorer.Views
 			ItemsListView.SelectedItem = null;
 		}
 
-		protected override void OnAppearing()
+		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
 
 			if (_viewModel.Items.Count == 0)
 				_viewModel.LoadItemsCommand.Execute(new object());
+
+			if (!_viewModel.IsHubConnected)
+			{
+				await _viewModel.ConnectAsync();
+			}
 		}
 	}
 }
