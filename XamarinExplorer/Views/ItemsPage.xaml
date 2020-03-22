@@ -13,13 +13,14 @@
     </ContentPage.ToolbarItems>
    <ContentPage.Content xmlns:views="clr-namespace:XamarinExplorer.Views">
         <StackLayout Orientation="Vertical" VerticalOptions="Fill">
+            <Label Text="{Binding StatusText}" HorizontalOptions="End" Margin="5" />
             <!--<SearchBar HeightRequest="60"
                        Text="{Binding Filter}" Placeholder="Type to search" PlaceholderColor="White"
                        TextColor="{StaticResource LightTextColor}"
                        />-->
 
             <Grid Margin="10">
-                <Entry Placeholder="To do +" Text="{Binding ToDoText}" MinimumWidthRequest="200" />
+                <Entry Placeholder="To do +" Text="{Binding ToDoText, Mode=TwoWay}" MinimumWidthRequest="200" />
                 <Button Command="{Binding AddCommand}" Margin="5,5,10,5" WidthRequest="60"
                         Text="+" BackgroundColor="{StaticResource ActionColor}"
                         TextColor="White" HorizontalOptions="End"

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -20,7 +21,7 @@ namespace XamarinExplorer
 				_items = JsonConvert.DeserializeObject<List<Item>>(json);
 			}
 
-			return _items;
+			return _items.OrderByDescending(item => item.DateCreated);
 		}
 
 		public async Task PostAsync(Item model)
@@ -29,7 +30,7 @@ namespace XamarinExplorer
 
 			var content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
 
-			await GetClient().PostAsync("SignalRTrigger", content);
+			await GetClient().PostAsync("HttpPostTrigger", content);
 		}
 	}
 }
