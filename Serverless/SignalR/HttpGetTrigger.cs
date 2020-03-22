@@ -21,7 +21,7 @@ namespace Serverless
             log.LogInformation ("C# HTTP trigger function processed a request.");
 
             bool parsed;
-            bool displayErrors = bool.TryParse (req.Query["displayErrors"].ToString (), out parsed) && parsed;
+            bool displayErrors = bool.TryParse (req.Query["showDetails"].ToString (), out parsed) && parsed;
 
             try 
             {

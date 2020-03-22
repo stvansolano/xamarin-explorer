@@ -30,7 +30,7 @@ namespace Serverless
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] 
             HttpRequest req,
-            [SignalR(HubName = "broadcast")]IAsyncCollector<SignalRMessage> signalRMessages,
+            [SignalR(HubName = Shared.BROADCAST_HUB)]IAsyncCollector<SignalRMessage> signalRMessages,
             ILogger log)
         {
              string requestBody = new StreamReader(req.Body).ReadToEnd();
@@ -52,8 +52,9 @@ namespace Serverless
 
             await signalRMessages.AddAsync(new SignalRMessage()
             {
-                Target = "notify",
-                Arguments = new object[] { data }
+                Target = "notify", //UserId = "Web",
+                Arguments = new object[] { data },
+                //GroupName = "ToDos"
             });
 
             return new CreatedResult($"/api/HttpGet/{data._Id}", data);
