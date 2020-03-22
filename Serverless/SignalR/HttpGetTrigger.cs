@@ -11,10 +11,10 @@ using Newtonsoft.Json;
 
 namespace Serverless 
 {
-    public static class HttpGetTrigger 
+    public static partial class Functions 
     {
-        [FunctionName ("HttpGetTrigger")]
-        public static async Task<IActionResult> Run (
+        [FunctionName (nameof(HttpGetTrigger))]
+        public static async Task<IActionResult> HttpGetTrigger (
             [HttpTrigger (AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log = null) 
         {
@@ -25,11 +25,11 @@ namespace Serverless
 
             try 
             {
-                var collection = Shared.GetDocumentCollection (
+                var collection = Shared.MongoDB<MyToDo>.GetDocumentCollection (
                     Environment.GetEnvironmentVariable ("MongoDbCollection")
                 );
-                var result = await collection.Find (FilterDefinition<object>.Empty)
-                    .ToListAsync<object> ();
+                var result = await collection.Find(FilterDefinition<MyToDo>.Empty)
+                    .ToListAsync<MyToDo>();
 
                 return new OkObjectResult (JsonConvert.SerializeObject (result));
             } 

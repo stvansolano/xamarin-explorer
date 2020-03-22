@@ -8,6 +8,7 @@ namespace XamarinExplorer
 	{
 		public const string WebServiceUrl = "https://my-signalr-functions.azurewebsites.net/api/";
 		public const string SignalRUrl = "https://my-signalr-functions.azurewebsites.net/api/";
+		//public const string SignalRUrl = "https://mytodos.service.signalr.net";
 
 		public static string AppCenterSecret
 		{

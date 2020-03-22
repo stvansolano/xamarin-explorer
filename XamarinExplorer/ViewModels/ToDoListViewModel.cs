@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AspNetCore.SignalR.Client;
-using Newtonsoft.Json;
 using Shared;
 using Xamarin.Forms;
 
@@ -74,33 +70,6 @@ namespace XamarinExplorer.ViewModels
 			}
 		}
 
-		private async Task CheckRemoteItemsAsync()
-		{
-			IsBusy = true;
-
-			var todoItems = await Repository.GetAsync(true);
-
-			try
-			{
-				foreach (var toDo in todoItems)
-				{
-					if (Items.Any(item => item.Id == toDo.Id))
-					{
-						continue;
-					}
-					Items.Add(toDo);
-				}
-			}
-			catch (Exception up)
-			{
-				throw up;
-			}
-			finally
-			{
-				IsBusy = false;
-			}
-		}
-
 		#region SignalR
 
 		//  <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.0.0" />
@@ -116,7 +85,7 @@ namespace XamarinExplorer.ViewModels
 			hubConnection =
 				new HubConnectionBuilder()
 					.WithUrl(url)
-					//.WithAutomaticReconnect()
+					.WithAutomaticReconnect()
 					.Build();
 
 			hubConnection.Closed += async (error) =>
@@ -133,23 +102,9 @@ namespace XamarinExplorer.ViewModels
 				}
 			};
 
-			hubConnection.On<object>("notify", async(message) =>
+			hubConnection.On<string, string>("notify", async(user, message) =>
 			{
-				if (message is JsonElement json)
-				{
-					try
-					{
-						var item = JsonConvert.DeserializeObject<Item>(json.GetRawText());
-
-						Items.Add(item);
-
-						await CheckRemoteItemsAsync();
-					}
-					catch (Exception ex)
-					{
-						Crashes.TrackError(ex);
-					}
-				}
+				await LoadItemsAsync();
 			});
 		}
 

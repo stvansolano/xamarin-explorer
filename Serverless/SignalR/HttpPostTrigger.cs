@@ -7,27 +7,27 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.SignalRService;
+using Newtonsoft.Json;
 
 // Document Storage
-using Microsoft.Azure.Documents;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+//using Microsoft.Azure.Documents;
+//using System.Collections.Generic;
 
 namespace Serverless
 {
-    public static class SignalRTrigger
+    public static partial class Functions
     {
-        // POST http://localhost:7071/api/SignalRTrigger
+        // POST http://localhost:7071/api/HttpPostTrigger
         /*
         {
-            "Id": "1bc8279b-4813-4ae8-a66b-8cd207f2c310",
-            "Title": "Do something 2",
-            "IsCompleted": true
+            "_t": "MyToDo",
+            "Title": "Do something 3",
+            "IsCompleted": false
         }
         */
         
-        [FunctionName("SignalRTrigger")]
-        public static async Task<IActionResult> Run(
+        [FunctionName(nameof(HttpPostTrigger))]
+        public static async Task<IActionResult> HttpPostTrigger(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] 
             HttpRequest req,
             [SignalR(HubName = Shared.BROADCAST_HUB)]IAsyncCollector<SignalRMessage> signalRMessages,
@@ -42,17 +42,22 @@ namespace Serverless
 
             var data = JsonConvert.DeserializeObject<MyToDo>(requestBody);
 
-            var documentCollection = Shared.GetDocumentCollection(
+            var documentCollection = Shared.MongoDB<MyToDo>.GetDocumentCollection(
                 Environment.GetEnvironmentVariable("MongoDbCollection")
             );
-            data.Id = Guid.NewGuid().ToString();
+            if (data.Id == Guid.Empty.ToString())
+            {
+                data.Id = Guid.NewGuid().ToString();
+            }
             data._Id = MongoDB.Bson.ObjectId.GenerateNewId();
-
+            data.DateCreated = System.DateTime.UtcNow;
+            
             await documentCollection.InsertOneAsync(data);
 
             await signalRMessages.AddAsync(new SignalRMessage()
             {
-                Target = "notify", //UserId = "Web",
+                Target = "notify", 
+                //UserId = "Web",
                 Arguments = new object[] { data },
                 //GroupName = "ToDos"
             });

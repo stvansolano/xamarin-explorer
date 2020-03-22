@@ -1,7 +1,5 @@
 {
-    "Id": "12c3g5b8-e1f8-4739-88c6-476f59adca1b",
-    "title": "test",
-	"isCompleted": true,
-    "Text": "test",
-    "Description": "this is a test"
-  }
+    "_t": "MyToDo",
+    "Title": "Do something 3",
+    "IsCompleted": false
+}

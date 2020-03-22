@@ -12,7 +12,8 @@ namespace XamarinExplorer.ViewModels
 	public class ListViewModel<T> : BaseViewModel
 		where T : class
 	{
-		public virtual ObservableCollection<T> Items { get; private set; }
+		private ObservableCollection<T> _items;
+		public ObservableCollection<T> Items { get => FilterPredicate == null ? _items : new ObservableCollection<T>(_items.Where(item => FilterPredicate(item))); }
 		public Command LoadItemsCommand { get; set; }
 		public Command AddMoreCommand { get; set; }
 		public IRepository<T> Repository { get; }
@@ -22,7 +23,7 @@ namespace XamarinExplorer.ViewModels
 			Repository = repository;
 			Title = "Home";
             
-			Items = new ObservableCollection<T>();
+			_items = new ObservableCollection<T>();
 			LoadItemsCommand = new Command(async () => await LoadItemsAsync());
 			AddMoreCommand = new Command(async () => await AddMoreAsync());
 		}
@@ -38,7 +39,7 @@ namespace XamarinExplorer.ViewModels
 				return;
 
 			IsBusy = true;
-			Items.Clear();
+			_items.Clear();
 			await TryAddMore();
 		}
 
@@ -49,7 +50,7 @@ namespace XamarinExplorer.ViewModels
 				var items = await Repository.GetAsync(true);
 				foreach (var item in items)
 				{
-					Items.Add(item);
+					_items.Add(item);
 				}
 			}
 			catch (Exception ex)

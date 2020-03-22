@@ -16,5 +16,8 @@ namespace Shared
 
 		[JsonProperty("ListedPrice")]
 		public string Price { get; set; }
+
+		[JsonProperty(nameof(DateCreated))]
+		public DateTime DateCreated { get; set; }
 	}
 }

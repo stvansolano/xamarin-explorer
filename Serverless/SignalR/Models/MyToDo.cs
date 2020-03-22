@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using System;
+using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
 namespace Serverless
@@ -18,5 +19,8 @@ namespace Serverless
 
         [BsonElement(nameof(IsCompleted))]
         public bool IsCompleted { get; set; }
+
+        [BsonElement(nameof(DateCreated))]
+        public DateTime DateCreated { get; set; }
     }
 }
