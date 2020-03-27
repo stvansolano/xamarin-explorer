@@ -17,21 +17,10 @@ namespace XamarinExplorer.Views
 				
 			var repository = DependencyService.Get<IRepository<Item>>() as ToDoItemsRepository ?? new ToDoItemsRepository();
 			BindingContext = _viewModel = new ToDoListViewModel(repository);
-
-			_viewModel.FilterPredicate = item => true; // MatchesFilter(item.Text);
 			
 			RefreshToolbar.Command = new Command(() => _viewModel.LoadItemsCommand.Execute(new object()));
 
 			ItemsListView.ItemSelected += OnItemSelected;
-		}
-
-		private bool MatchesFilter(string text)
-		{
-			if (string.IsNullOrEmpty(_viewModel.Filter))
-			{
-				return true;
-			}
-			return (text ?? string.Empty).ToLowerInvariant().Contains(_viewModel.Filter.ToLowerInvariant());
 		}
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

@@ -17,6 +17,9 @@ namespace XamarinExplorer.ViewModels
 		public Command AddMoreCommand { get; set; }
 		public IRepository<T> Repository { get; }
 
+		public ListViewModel()
+		{ }
+
 		public ListViewModel(IRepository<T> repository)
 		{
 			Repository = repository;

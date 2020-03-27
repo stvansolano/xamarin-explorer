@@ -14,9 +14,6 @@ namespace Shared
 
 		public bool IsCompleted { get; set; }
 
-		[JsonProperty("ListedPrice")]
-		public string Price { get; set; }
-
 		[JsonProperty(nameof(DateCreated))]
 		public DateTime DateCreated { get; set; }
 	}

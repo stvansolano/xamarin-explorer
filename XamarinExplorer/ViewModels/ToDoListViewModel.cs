@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.Json;
@@ -6,16 +7,19 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Shared;
 using Xamarin.Forms;
 
 namespace XamarinExplorer.ViewModels
 {
-	public class ToDoListViewModel : ListViewModel<Item>
+	public class ToDoListViewModel : BaseViewModel
 	{
+		public ObservableCollection<ItemViewModel> Items { get; private set; } = new ObservableCollection<ItemViewModel>();
+
 		public Command AddCommand { get; private set; }
 
-		public new ToDoItemsRepository Repository { get; }
+		public ToDoItemsRepository Repository { get; }
 
 		public string StatusText
 		{
@@ -23,12 +27,13 @@ namespace XamarinExplorer.ViewModels
 		}
 
 		public ToDoListViewModel(ToDoItemsRepository repository)
-			: base(repository)
 		{
 			Repository = repository;
 			AddCommand = new Command(async () => {
 				var todo = await AddAsync();
 			});
+
+			LoadItemsCommand = new Command(async () => await CheckRemoteItemsAsync());
 
 			Init();
 		}
@@ -55,6 +60,8 @@ namespace XamarinExplorer.ViewModels
 			}
 		}
 
+		public Command LoadItemsCommand { get; set; }
+
 		private async Task<Item> AddAsync()
 		{
 			if (IsBusy || string.IsNullOrEmpty(ToDoText))
@@ -65,7 +72,7 @@ namespace XamarinExplorer.ViewModels
 				IsBusy = true;
 
 				var todo = new Item { Id = Guid.NewGuid().ToString(), Text = ToDoText };
-				Items.Insert(0, todo);
+				Items.Insert(0, new ItemViewModel(todo));
 
 				await Repository.PostAsync(todo);
 
@@ -98,7 +105,7 @@ namespace XamarinExplorer.ViewModels
 					{
 						continue;
 					}
-					Items.Add(toDo);
+					Items.Add(new ItemViewModel(toDo));
 				}
 				var sorted = Items.OrderByDescending(todo => todo.DateCreated).ToList();
 
@@ -172,6 +179,31 @@ namespace XamarinExplorer.ViewModels
 				Debug.WriteLine("SignalR reconnected...");
 			};
 
+			hubConnection.On<object>("notify_update", async (message) =>
+			{
+				if (message is JsonElement json)
+				{
+					JsonElement element;
+					var canParse = json.TryGetProperty("Data", out element);
+
+					if (!canParse)
+					{
+						return;
+					}
+					var encoded = element.GetString();
+					var todo = JsonConvert.DeserializeObject<Item>(encoded);
+					var match = Items.FirstOrDefault(item => item.Id == todo.Id);
+
+					if (match != null)
+					{
+						match.IsCompleted = todo.IsCompleted;
+						match.Text = todo.Text;
+					}
+					Console.WriteLine("received:" + message);
+
+				}
+			});
+
 			hubConnection.On<object>("notify", async(message) =>
 			{
 				if (message is JsonElement json)
@@ -182,7 +214,7 @@ namespace XamarinExplorer.ViewModels
 
 						if (!Items.Any(item => item.Id == toDo.Id))
 						{
-							Items.Insert(0, toDo);
+							Items.Insert(0, new ItemViewModel(toDo));
 						}
 
 						await CheckRemoteItemsAsync();
@@ -196,5 +228,45 @@ namespace XamarinExplorer.ViewModels
 		}
 
 		#endregion
+	}
+
+	public class ItemViewModel : BaseViewModel
+	{
+
+		public ItemViewModel(Item item)
+		{
+			_item = item;
+		}
+
+		public string Id
+		{
+			get => _item.Id;
+		}
+
+		public DateTime DateCreated
+		{
+			get => _item.DateCreated;
+		}
+
+		public string Text
+		{
+			get => _item.Text;
+			set
+			{
+				_item.Text = value;
+				OnPropertyChanged();
+			}
+		}
+
+		private Item _item;
+		public bool IsCompleted
+		{
+			get => _item.IsCompleted;
+			set
+			{
+				_item.IsCompleted = value;
+				OnPropertyChanged();
+			}
+		}
 	}
 }
