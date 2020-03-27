@@ -56,7 +56,7 @@ namespace Serverless
 
             await signalRMessages.AddAsync(new SignalRMessage()
             {
-                Target = "notify", 
+                Target = Shared.Events.NOTIFY, 
                 //UserId = "Web",
                 Arguments = new object[] { data },
                 //GroupName = "ToDos"
