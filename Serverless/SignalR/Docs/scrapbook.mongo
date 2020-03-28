@@ -1,6 +1,6 @@
 //db.MyToDos.Todos.drop()
 
-db.MyToDos.deleteMany({ "isCompleted" : true })
+db.MyToDos.deleteOne({ "_id" : ObjectId("5e7fb0929206371778868b4e") })
 
 db.MyToDos.insert(
     [{

@@ -20,6 +20,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+       <Compile Remove="Docs\" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
 </Project>

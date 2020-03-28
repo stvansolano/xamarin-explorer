@@ -8,7 +8,7 @@ namespace XamarinExplorer.Views
 		{
 			BindingContext = new
 			{
-				Title = (model is Item p ? p?.Text : string.Empty),
+				Title = (model is Item p ? p?.Title : string.Empty),
 				Model = model
 			};
 

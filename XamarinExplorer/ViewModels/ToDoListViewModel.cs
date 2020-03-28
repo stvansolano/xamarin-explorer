@@ -16,24 +16,29 @@ namespace XamarinExplorer.ViewModels
 	public class ToDoListViewModel : BaseViewModel
 	{
 		public ObservableCollection<ItemViewModel> Items { get; private set; } = new ObservableCollection<ItemViewModel>();
+		private ToDoItemsRepository Repository { get; } = DependencyService.Get<IRepository<Item>>() as ToDoItemsRepository ?? new ToDoItemsRepository();
 
 		public Command AddCommand { get; private set; }
-
-		public ToDoItemsRepository Repository { get; }
 
 		public string StatusText
 		{
 			get => IsHubConnected ? "Connected" : "Disconnected";
 		}
 
-		public ToDoListViewModel(ToDoItemsRepository repository)
+		public ToDoListViewModel()
 		{
-			Repository = repository;
-			AddCommand = new Command(async () => {
+			AddCommand = new Command(async () =>
+			{
 				var todo = await AddAsync();
+
+				ToDoText = string.Empty;
 			});
 
-			LoadItemsCommand = new Command(async () => await CheckRemoteItemsAsync());
+			LoadItemsCommand = new Command(async () => {
+				Items.Clear();
+				await CheckRemoteItemsAsync();
+				IsBusy = false;
+			});
 
 			Init();
 		}
@@ -45,7 +50,7 @@ namespace XamarinExplorer.ViewModels
 			set
 			{
 				_toDoText = value;
-				SetProperty(ref _toDoText, value);
+				SetProperty(ref _toDoText, value, nameof(ToDoText));
 			}
 		}
 
@@ -71,12 +76,10 @@ namespace XamarinExplorer.ViewModels
 			{
 				IsBusy = true;
 
-				var todo = new Item { Id = Guid.NewGuid().ToString(), Text = ToDoText };
-				Items.Insert(0, new ItemViewModel(todo));
+				var todo = new Item { Id = Guid.NewGuid().ToString(), Title = ToDoText };
+				Items.Insert(0, new ItemViewModel(todo) { UpdateCommand = new Command<ItemViewModel>(async param => await UpdateItemAsync(param)) });
 
 				await Repository.PostAsync(todo);
-
-				ToDoText = string.Empty;
 
 				return todo;
 			}
@@ -91,21 +94,26 @@ namespace XamarinExplorer.ViewModels
 			}
 		}
 
+		private async Task UpdateItemAsync(ItemViewModel item)
+		{
+			await Repository.UpdateAsync(item.Id, item.Model);
+		}
+
 		private async Task CheckRemoteItemsAsync()
 		{
 			IsBusy = true;
 
-			var todoItems = await Repository.GetAsync(true);
-
 			try
 			{
+				var todoItems = await Repository.GetAsync(true);
+
 				foreach (var toDo in todoItems)
 				{
 					if (Items.Any(item => item.Id == toDo.Id))
 					{
 						continue;
 					}
-					Items.Add(new ItemViewModel(toDo));
+					Items.Add(new ItemViewModel(toDo) { UpdateCommand = new Command<ItemViewModel>(async param => await UpdateItemAsync(param)) });
 				}
 				var sorted = Items.OrderByDescending(todo => todo.DateCreated).ToList();
 
@@ -179,7 +187,29 @@ namespace XamarinExplorer.ViewModels
 				Debug.WriteLine("SignalR reconnected...");
 			};
 
-			hubConnection.On<object>("notify_update", async (message) =>
+			hubConnection.On<object>("notify", async (message) =>
+			{
+				if (message is JsonElement json)
+				{
+					try
+					{
+						var toDo = JsonConvert.DeserializeObject<Item>(json.GetRawText());
+
+						if (!Items.Any(item => item.Id == toDo.Id))
+						{
+							Items.Insert(0, new ItemViewModel(toDo) { UpdateCommand = new Command<ItemViewModel>(async param => await UpdateItemAsync(param)) });
+						}
+
+						await CheckRemoteItemsAsync();
+					}
+					catch (Exception ex)
+					{
+						Crashes.TrackError(ex);
+					}
+				}
+			});
+
+			hubConnection.On<object>("notify_update", (message) =>
 			{
 				if (message is JsonElement json)
 				{
@@ -197,32 +227,10 @@ namespace XamarinExplorer.ViewModels
 					if (match != null)
 					{
 						match.IsCompleted = todo.IsCompleted;
-						match.Text = todo.Text;
+						match.Title = todo.Title;
 					}
 					Console.WriteLine("received:" + message);
 
-				}
-			});
-
-			hubConnection.On<object>("notify", async(message) =>
-			{
-				if (message is JsonElement json)
-				{
-					try
-					{
-						var toDo = JsonConvert.DeserializeObject<Item>(json.GetRawText());
-
-						if (!Items.Any(item => item.Id == toDo.Id))
-						{
-							Items.Insert(0, new ItemViewModel(toDo));
-						}
-
-						await CheckRemoteItemsAsync();
-					}
-					catch (Exception ex)
-					{
-						Crashes.TrackError(ex);
-					}
 				}
 			});
 		}
@@ -230,43 +238,4 @@ namespace XamarinExplorer.ViewModels
 		#endregion
 	}
 
-	public class ItemViewModel : BaseViewModel
-	{
-
-		public ItemViewModel(Item item)
-		{
-			_item = item;
-		}
-
-		public string Id
-		{
-			get => _item.Id;
-		}
-
-		public DateTime DateCreated
-		{
-			get => _item.DateCreated;
-		}
-
-		public string Text
-		{
-			get => _item.Text;
-			set
-			{
-				_item.Text = value;
-				OnPropertyChanged();
-			}
-		}
-
-		private Item _item;
-		public bool IsCompleted
-		{
-			get => _item.IsCompleted;
-			set
-			{
-				_item.IsCompleted = value;
-				OnPropertyChanged();
-			}
-		}
-	}
 }

@@ -3,6 +3,7 @@ using XamarinExplorer.Services;
 using XamarinExplorer.ViewModels;
 using Xunit;
 using Shared;
+using XamarinExplorer;
 
 namespace UnitTests
 {
@@ -17,15 +18,16 @@ namespace UnitTests
 		}
 
 		[Fact]
-        public async void ListTests()
+        public void ListTests()
         {
 			Init();
 
 			DependencyService.Register<IHttpFactory, MockHttpFactory>();
+			DependencyService.Register<ToDoItemsRepository>();
 
-            var viewModel = new ListViewModel<Item>(new Repository<Item>());
+            var viewModel = new ToDoListViewModel();
 
-            await viewModel.LoadItemsAsync();
+            viewModel.LoadItemsCommand.Execute(new object());
 
             Assert.NotNull(viewModel.Items);
             Assert.NotEmpty(viewModel.Items);

@@ -42,8 +42,31 @@
     <None Remove="Secrets.json" />
   </ItemGroup>
    <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
-    <ProjectReference Include="..\..\Services\Shared.AdventureWorks\Shared.AdventureWorks.csproj" />
-    <ProjectReference Include="..\Server\AdventureWorks.SqlServer\AdventureWorks.SqlServer.csproj" />
-  </ItemGroup>
+     <Folder Include="Models\" />
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Remove="Utils\Repositories.cs" />
+     <Compile Remove="ViewModels\MenuPageViewModel.cs" />
+     <Compile Remove="Views\ControlsPage.xaml.cs" />
+     <Compile Remove="Views\HomePage.xaml.cs" />
+     <Compile Remove="Views\MenuPage.xaml.cs" />
+     <Compile Remove="Views\TabsPage.xaml.cs" />
+     <Compile Remove="MainPage.xaml.cs" />
+     <Compile Remove="ViewModels\ListViewModel.cs" />
+     <Compile Remove="Views\Plugins\CameraPage.xaml.cs" />
+     <Compile Remove="Views\Plugins\PluginsPage.xaml.cs" />
+     <Compile Remove="Views\Controls\CardImageView.xaml.cs" />
+     <Compile Remove="Views\Plugins\CompassPage.xaml.cs" />
+   </ItemGroup>
+   <ItemGroup>
+     <EmbeddedResource Remove="Views\ControlsPage.xaml" />
+     <EmbeddedResource Remove="Views\HomePage.xaml" />
+     <EmbeddedResource Remove="Views\TabsPage.xaml" />
+     <EmbeddedResource Remove="Views\MenuPage.xaml" />
+     <EmbeddedResource Remove="MainPage.xaml" />
+     <EmbeddedResource Remove="Views\Plugins\CameraPage.xaml" />
+     <EmbeddedResource Remove="Views\Plugins\CompassPage.xaml" />
+     <EmbeddedResource Remove="Views\Plugins\PluginsPage.xaml" />
+     <EmbeddedResource Remove="Views\Controls\CardImageView.xaml" />
+   </ItemGroup>
 </Project>

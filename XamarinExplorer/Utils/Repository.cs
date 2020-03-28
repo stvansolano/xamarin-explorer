@@ -64,7 +64,7 @@ namespace XamarinExplorer.Services
 			var buffer = Encoding.UTF8.GetBytes(serializedItem);
 			var byteContent = new ByteArrayContent(buffer);
 
-			var response = await GetClient().PutAsync(new Uri($"{id}"), byteContent);
+			var response = await GetClient().PutAsync(new Uri($"/api/todo/{id}"), byteContent);
 
 			return response.IsSuccessStatusCode;
 		}

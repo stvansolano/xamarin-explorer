@@ -1,31 +1,20 @@
 
-# Xamarin Explorer
+# My-To-Do App 
 
-A demo project of Xamarin things that you can do! Built with Xamarin.Forms +3.0 and beyond!
+A simple ToDo app built for personal use.
 
-@stvansolano
-https://github.com/stvansolano/xamarin-explorer/
+Built with:
+- Xamarin.Forms
+- Azure Functions
+- SignalR
+- CosmosDB (MongoDB API)
 
-stvansolano@outlook.com
+And more!
 
-## Builds
+[@stvansolano](https://twitter.com/stvansolano)
 
-Azure DevOps
- [![Build status](https://stvansolano.visualstudio.com/cloud-services/_apis/build/status/Xamarin%20Explorer%20-%20Android%20Build%20CI)](https://stvansolano.visualstudio.com/cloud-services/_build/latest?definitionId=6)
+https://github.com/stvansolano/my-todo-app
 
-App Center
- [![Build status](https://build.appcenter.ms/v0.1/apps/ac8a959f-5538-4a4c-b6ff-e2974c86944d/branches/develop/badge)](https://appcenter.ms)
+## Blog
 
-## Downlodad (Public beta)
-
-App Center
- https://install.appcenter.ms/users/stvansolano/apps/xamarin-explorer-android/distribution_groups/public%20beta
-
- ## Required Secrets.json (Forms project)
-
- ```
- {
-	"AppCenter_iOS_Secret" : "",
-	"AppCenter_Android_Secret" : ""
-}
- ```
+- https://stvansolano.github.io/blog/

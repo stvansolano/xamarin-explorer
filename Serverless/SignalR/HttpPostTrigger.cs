@@ -45,7 +45,7 @@ namespace Serverless
             var documentCollection = Shared.MongoDB<MyToDo>.GetDocumentCollection(
                 Environment.GetEnvironmentVariable("MongoDbCollection")
             );
-            if (data.Id == Guid.Empty.ToString())
+            if (string.IsNullOrEmpty(data.Id))
             {
                 data.Id = Guid.NewGuid().ToString();
             }

@@ -9,18 +9,21 @@ namespace XamarinExplorer.Views
 	{
 		ToDoListViewModel _viewModel;
 
+		public bool IsReady { get; private set; }
+
 		public ItemsPage()
 		{
+			BindingContext = _viewModel = new ToDoListViewModel();
+
 			InitializeComponent();
 
 			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetLargeTitleDisplay(LargeTitleDisplayMode.Always);
-				
-			var repository = DependencyService.Get<IRepository<Item>>() as ToDoItemsRepository ?? new ToDoItemsRepository();
-			BindingContext = _viewModel = new ToDoListViewModel(repository);
-			
+							
 			RefreshToolbar.Command = new Command(() => _viewModel.LoadItemsCommand.Execute(new object()));
 
 			ItemsListView.ItemSelected += OnItemSelected;
+
+			AddButton.Clicked += (s, e) => ToDoEntry.Text = string.Empty;
 		}
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -37,6 +40,7 @@ namespace XamarinExplorer.Views
 
 		protected override async void OnAppearing()
 		{
+			IsReady = false;
 			base.OnAppearing();
 
 			if (_viewModel.Items.Count == 0)
@@ -45,6 +49,16 @@ namespace XamarinExplorer.Views
 			if (!_viewModel.IsHubConnected)
 			{
 				await _viewModel.ConnectAsync();
+			}
+			IsReady = true;
+		}
+
+		void CheckBox_CheckedChanged(System.Object sender, Xamarin.Forms.CheckedChangedEventArgs e)
+		{
+			if (sender is CheckBox checkBox && IsReady)
+			{
+				var context = checkBox.BindingContext as ItemViewModel;
+				context?.UpdateCommand?.Execute(context);
 			}
 		}
 	}
