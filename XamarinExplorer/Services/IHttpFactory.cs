@@ -13,9 +13,9 @@ namespace XamarinExplorer.Services
         public virtual HttpClient GetClient()
         {
             var client = new HttpClient();
-            if (!string.IsNullOrEmpty(App.WebServiceUrl))
+            if (!string.IsNullOrEmpty(AppConstants.WebServiceUrl))
             {
-                client.BaseAddress = new Uri($"{App.WebServiceUrl}/");
+                client.BaseAddress = new Uri($"{AppConstants.WebServiceUrl}");
             }
 
             return client;

@@ -1,6 +1,4 @@
-﻿using AdventureWorks.SqlServer.Models;
-using Shared;
-using Shared.WordPress;
+﻿using Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using XamarinExplorer.ViewModels;
@@ -9,7 +7,7 @@ namespace XamarinExplorer.Views
 {
 	public partial class ItemsPage : ContentPage
 	{
-		ListViewModel<Product> _viewModel;
+		ToDoListViewModel _viewModel;
 
 		public ItemsPage()
 		{
@@ -17,10 +15,10 @@ namespace XamarinExplorer.Views
 
 			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetLargeTitleDisplay(LargeTitleDisplayMode.Always);
 				
-			var repository = DependencyService.Get<IRepository<Product>>();
-			BindingContext = _viewModel = new ListViewModel<Product>(repository);
+			var repository = DependencyService.Get<IRepository<Item>>() as ToDoItemsRepository ?? new ToDoItemsRepository();
+			BindingContext = _viewModel = new ToDoListViewModel(repository);
 
-			_viewModel.FilterPredicate = item => MatchesFilter(item.Name) || MatchesFilter(item.Name);
+			_viewModel.FilterPredicate = item => true; // MatchesFilter(item.Text);
 			
 			RefreshToolbar.Command = new Command(() => _viewModel.LoadItemsCommand.Execute(new object()));
 
@@ -38,7 +36,7 @@ namespace XamarinExplorer.Views
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
 		{
-			var item = args.SelectedItem as WP_Post;
+			var item = args.SelectedItem as Item;
 			if (item == null)
 				return;
 			
@@ -48,12 +46,17 @@ namespace XamarinExplorer.Views
 			ItemsListView.SelectedItem = null;
 		}
 
-		protected override void OnAppearing()
+		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
 
 			if (_viewModel.Items.Count == 0)
 				_viewModel.LoadItemsCommand.Execute(new object());
+
+			if (!_viewModel.IsHubConnected)
+			{
+				await _viewModel.ConnectAsync();
+			}
 		}
 	}
 }

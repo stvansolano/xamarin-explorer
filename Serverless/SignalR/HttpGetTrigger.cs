@@ -9,54 +9,38 @@ using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 
-namespace Serverless
+namespace Serverless 
 {
-    public static class HttpGetTrigger
+    public static partial class Functions 
     {
-        [FunctionName("HttpGetTrigger")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-            ILogger log = null)
+        [FunctionName (nameof(HttpGetTrigger))]
+        public static async Task<IActionResult> HttpGetTrigger (
+            [HttpTrigger (AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            ILogger log = null) 
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation ("C# HTTP trigger function processed a request.");
 
             bool parsed;
-            bool displayErrors = bool.TryParse(req.Query["displayErrors"].ToString(), out parsed) && parsed;
+            bool displayErrors = bool.TryParse (req.Query["showDetails"].ToString (), out parsed) && parsed;
 
-//          string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-//            dynamic data = JsonConvert.DeserializeObject(requestBody);
-
-            try
+            try 
             {
-                 var connection = Environment.GetEnvironmentVariable("MongoDbConnection");
-                var databaseName = Environment.GetEnvironmentVariable("MongoDbDatabase");
-                var collectionName = Environment.GetEnvironmentVariable("MongoDbCollection");
-
-                MongoClientSettings settings = MongoClientSettings.FromUrl(
-                    new MongoUrl(connection)
+                var collection = Shared.MongoDB<MyToDo>.GetDocumentCollection (
+                    Environment.GetEnvironmentVariable ("MongoDbCollection")
                 );
+                var result = await collection.Find(FilterDefinition<MyToDo>.Empty)
+                    .ToListAsync<MyToDo>();
 
-                settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
-
-                var mongoClient = new MongoClient(settings);
-                var client = new MongoClient(connection);
-                var database = client.GetDatabase(databaseName);
-
-                IMongoCollection<object> collection = database.GetCollection<object>(collectionName);
-
-                var result = await collection.Find(FilterDefinition<object>.Empty)
-                                            .ToListAsync<object>();
-
-                return new OkObjectResult(JsonConvert.SerializeObject(result));
-            }
-            catch (System.Exception ex)
+                return new OkObjectResult (JsonConvert.SerializeObject (result));
+            } 
+            catch (System.Exception ex) 
             {
-                log.LogInformation("C# HTTP trigger function processed a request.");
+                log.LogInformation ("C# HTTP trigger function processed a request.");
 
-                if (displayErrors){
-                    return new OkObjectResult(ex.Message);
+                if (displayErrors) {
+                    return new OkObjectResult (ex.Message);
                 }
-                return new OkObjectResult("Failed to fetch data");
+                return new OkObjectResult ("Failed to fetch data");
             }
         }
     }

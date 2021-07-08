@@ -1,0 +1,20 @@
+//db.MyToDos.Todos.drop()
+
+db.MyToDos.deleteMany({ "isCompleted" : true })
+
+db.MyToDos.insert(
+    [{
+        "_id": {
+            "$oid": "5e7672116b395b002066d2a6"
+        },
+        "_t": "MyToDo",
+        "Id": "c1f5c787-5554-44a7-9736-640036e24fe0",
+        "Title": "Test",
+        "IsCompleted": false
+    }
+    ]
+)
+
+db.MyToDos.find()//.pretty()
+
+db.MyToDos.find({}, { name: 1, _id: 1 })

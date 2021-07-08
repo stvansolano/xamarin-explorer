@@ -1,6 +1,16 @@
 {
     "version": "0.2.0",
-    "configurations": [
+    "configurations": 
+    [
+        {
+            "name": "Docker .NET Core Attach (Preview)",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            }
+        },
         {
             "name": "Attach to .NET Functions",
             "type": "coreclr",
